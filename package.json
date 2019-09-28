@@ -1,7 +1,7 @@
 {
   "name": "egg-blog",
   "version": "0.0.1",
-  "description": "基于 easywebpack-react 的blog",
+  "description": "基于egg/react的blog",
   "scripts": {
     "clean": "easy clean",
     "build": "easy build",
