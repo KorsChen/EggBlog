@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import Home from './router/home';
 import About from './router/about';
+import Header from '../../../component/header';
 
 import { Menu, Icon } from 'antd';
 
@@ -20,12 +21,13 @@ class App extends Component {
 
   render() {
     return <div>
+      <Header/>
       <Menu onClick={this.handleClick.bind(this)} selectedKeys={[this.state.current]} mode="horizontal">
         <Menu.Item key="/">
-          <Link to="/">Home</Link>
+          <Link to="/">首页</Link>
         </Menu.Item>
         <Menu.Item key="/about">
-          <Link to="/about">About</Link>
+          <Link to="/about">关于</Link>
         </Menu.Item>
       </Menu>
       <Switch>

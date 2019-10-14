@@ -3,39 +3,38 @@ module.exports = app => {
   return class AppController extends app.Controller {
     async index() {
       const { ctx } = this;
-      const { req } = ctx;
-      const page = (req.query && req.query.page) ? req.query.page : 1;
+      const { req, url } = ctx;
+      const { query, session } = req;
+
+      const page = (query && query.page) ? query.page : 1;
       const start = (page - 1) * 8;
       const end = page * 8;
       const queryCount = 'SELECT COUNT(*) AS articleNum FROM article';
-      // 新加的文章展示在最前面
-      const query = 'SELECT * FROM article ORDER BY articleID DESC LIMIT ' + start + ',' + end;
-
-      await app.mysql.query(query, (err, rows) => {
-        const articles = rows;
-        articles.forEach((ele) => {
-          const year = ele.articleTime.getFullYear();
-          const month = ele.articleTime.getMonth() + 1 > 10 ? ele.articleTime.getMonth() : '0' + (ele.articleTime.getMonth() + 1);
-          const date = ele.articleTime.getDate() > 10 ? ele.articleTime.getDate() : '0' + ele.articleTime.getDate();
-          ele.articleTime = year + '-' + month + '-' + date;
-        });
-        app.mysql.query(queryCount, (err, rows) => {
-          const articleNum = rows[0].articleNum;
-          const pageNum = Math.ceil(articleNum / 8);
-          ctx.render('app.js', { 
-            url: ctx.url,
-            articles,
-            user:req.session.user,
-            pageNum,
-            page
-          });
-        });
+      // 新加的文章展示在最前面，一页8篇文章
+      const queryArticles = 'SELECT * FROM article ORDER BY articleID DESC LIMIT ' + start + ',' + end;
+      const articles = await app.mysql.query(queryArticles);
+      articles.forEach((ele) => {
+        const year = ele.articleTime.getFullYear();
+        const month = ele.articleTime.getMonth() + 1 > 10 ? ele.articleTime.getMonth() : '0' + (ele.articleTime.getMonth() + 1);
+        const date = ele.articleTime.getDate() > 10 ? ele.articleTime.getDate() : '0' + ele.articleTime.getDate();
+        ele.articleTime = year + '-' + month + '-' + date;
       });
+
+      const rows = await app.mysql.query(queryCount);
+      const articleNum = rows[0].articleNum;
+      const pageNum = Math.ceil(articleNum / 8);
+      await ctx.renderClient('app.js', { 
+        url,
+        articles,
+        user:session ? session.user : '',
+        pageNum,
+        page
+      },);
     }
 
     async list() {
       const { ctx } = this;
-      await ctx.render('list.js', Model.getPage(1, 10));
+      await ctx.renderClient('list.js', Model.getPage(1, 10));
     }
 
     async client() {

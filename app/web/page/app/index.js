@@ -10,15 +10,16 @@ import App from './components';
 import { create } from './components/store';
 import routes from './components/router'
 import './index.css';
+import { json } from 'body-parser';
 
 const clientRender = () => {
   const store = create(window.__INITIAL_STATE__);
-  const url = store.getState().url;
-  console.log('>>>url', url);
+  const { articles } = store.getState();
+  console.log('1>>>url', JSON.stringify(articles));
   const Entry = () => (<div>
     <Provider store={ store }>
       <BrowserRouter>
-        <App url={ url }/>
+        <App articles/>
       </BrowserRouter>
     </Provider>
   </div>
@@ -38,7 +39,7 @@ const clientRender = () => {
 
 const serverRender = (context, options)=> {
   const url = context.state.url;
-  console.log('>>>>url', url);
+  console.log('2>>>>url', url);
   const branch = matchRoutes(routes, url);
   const promises = branch.map(({route}) => {
     const fetch = route.component.fetch;
