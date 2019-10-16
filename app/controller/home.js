@@ -32,6 +32,27 @@ module.exports = app => {
       },);
     }
 
+    async article() {
+      const { ctx } = this;
+      const { request, req: { session = {} } } = ctx;
+      const { url = '' } = request;
+
+      const index = url.lastIndexOf('\/');
+      const articleID = url.substring(index + 1, url.length);
+      const escapeID = app.mysql.escape(articleID);
+      console.log('articleID-----------------' + escapeID);
+      const queryAction = 'SELECT * FROM article WHERE articleID=' + escapeID;
+      const articles = await app.mysql.query(queryAction);
+      const article = articles[0];
+      let { articleTime } = article;
+      const year = articleTime.getFullYear();
+      const month = articleTime.getMonth() + 1 > 10 ? articleTime.getMonth() : '0' + (articleTime.getMonth() + 1);
+      const date = articleTime.getDate() > 10 ? articleTime.getDate() : '0' + articleTime.getDate();
+      articleTime = year + '-' + month + '-' + date;
+      console.log('articleID-----------------' + JSON.stringify(articleTime));
+      await ctx.renderClient('article.js', { article, user: session.user });
+    }
+
     async list() {
       const { ctx } = this;
       await ctx.renderClient('list.js', Model.getPage(1, 10));

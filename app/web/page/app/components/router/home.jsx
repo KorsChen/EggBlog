@@ -30,7 +30,7 @@ class Home extends Component {
   }
 
   render() {
-    const { add, del, list=[] } = this.props;
+    const { add, del, list=[], history } = this.props;
     const id = list.length + 1;
     return <div className="redux-nav-item">
       <div className="container">
@@ -38,11 +38,15 @@ class Home extends Component {
           <div className="col-xs-12 col-sm-9">
             <ul className="smart-artiles" id="articleList">
               {list.map(function(item) {
-                const { articleTitle, articleTime } = item;
-                return <li key={item.id}>
+                const { articleTitle, articleTime, articleID } = item;
+                return <li key={articleID}>
                   <div className="point">+{item.hits}</div>
                   <div className="card">
-                    <h2><a href={item.url} target="_blank">{articleTitle}</a></h2>
+                    <h2><a href={item.url} target="_blank" onClick={() => {
+                      history.push({
+                        pathname: './article/' + articleID
+                      });
+                    }}>{articleTitle}</a></h2>
                     <div>
                       <ul className="actions">
                         <li>

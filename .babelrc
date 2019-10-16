@@ -9,9 +9,6 @@
     ]
   ],
   "plugins": [
-    "@babel/plugin-transform-object-assign",
-    "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-proposal-object-rest-spread",
     [
       "import",
       {
@@ -23,7 +20,8 @@
   "env": {
     "development": {
       "plugins": [
-        "react-hot-loader/babel"
+        "react-hot-loader/babel",
+        "@babel/plugin-transform-runtime"
       ]
     }
   },

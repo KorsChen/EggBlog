@@ -34,12 +34,10 @@ const clientRender = () => {
   import('service-worker-register').then(sw =>{
     sw.default.register('service-worker.js');
   });
-
 };
 
 const serverRender = (context, options)=> {
   const url = context.state.url;
-  console.log('2>>>>url', url);
   const branch = matchRoutes(routes, url);
   const promises = branch.map(({route}) => {
     const fetch = route.component.fetch;
