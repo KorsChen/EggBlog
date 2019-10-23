@@ -3,14 +3,16 @@ import axios from 'axios';
 // 创建axios实例
 let service = null;
 if (process.env.NODE_ENV === 'development') {
+  console.log('1create==================')
   service = axios.create({
-    baseURL: '/api', // api的base_url
+    baseURL: '', // api的base_url
     timeout: 50000, // 请求超时时间
   });
 } else {
+  console.log('2create==================')
   // 生产环境下
   service = axios.create({
-    baseURL: '/api', // api的base_url
+    baseURL: '', // api的base_url
     timeout: 50000, // 请求超时时间
   });
 }

@@ -16,5 +16,8 @@ module.exports = {
         loader: 'less-loader' // compiles Less to CSS
       }
     ]
+  },
+  node: {
+    fs: 'empty'
   }
 };

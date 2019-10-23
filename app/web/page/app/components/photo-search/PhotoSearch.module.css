@@ -1,0 +1,87 @@
+.photoGridContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;;
+}
+
+.photoGrid {
+  width: 860px;
+  max-height: 1500px;
+  margin: 20px 0 0;
+}
+
+.photoItemWrapper {
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  transition: all 75ms ease;
+}
+
+.photoItemWrapper a {
+  color: #fff;
+}
+
+.photoItemWrapper:hover {
+  transform: scale(1.02);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+}
+
+.photoItemWrapper:active {
+  transform: scale(0.98);
+}
+
+.photoItemWrapper:hover .photoLink,
+.photoItemWrapper:hover .photoAuthor,
+.photoItemWrapper:hover .photoMask {
+  opacity: 1;
+}
+
+.photoItemWrapper:hover .photo {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+
+}
+
+.photo {
+  width: 195px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.photoAuthor {
+  opacity: 0;
+  position: absolute;
+  left: 4px;
+  bottom: 2px;
+  color: #fff;
+}
+
+.photoLink {
+  opacity: 0;
+  position: absolute;
+  right: 10px;
+  bottom: 2px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.photoMask {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 24px;
+  width: 195px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: rgba(40, 44, 52, 0.5);
+}
+
+.pager {
+  margin: 20px 0 0;
+}
+
+.noImageFeedback {
+  margin: 8px 0 0;
+  text-align: center;
+}

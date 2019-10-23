@@ -33,7 +33,7 @@ class Article extends Component {
       isLoading: false,
       isSubmitLoading: false,
       list: [],
-      content: articleContent,
+      content: '',
       type: 1, //文章类型 => 1: 普通文章，2: 简历，3: 管理员介绍
       articleDetail: {
         _id: articleID,
@@ -53,6 +53,7 @@ class Article extends Component {
         tags: [],
         title: articleTitle,
         update_time: '',
+        content: articleContent,
       },
       cacheTime: 0, // 缓存时间
       times: 0, // 评论次数

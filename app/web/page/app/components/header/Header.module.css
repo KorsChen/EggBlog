@@ -1,0 +1,76 @@
+:global(.ant-popover-title) {
+  text-align: center;
+}
+
+:global(.ant-modal-title) {
+  text-align: center;
+}
+
+.header {
+  background-color: #fafafa;
+  height: 65px;
+  font-size: calc(10px + 2vmin);
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,.05);
+  transition: all ease-in 300ms;
+}
+
+.header:hover {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
+}
+
+.button {
+  color: #282c34;
+  font-size: 1.4rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 1px 6px;
+  cursor: pointer;
+}
+
+.logo {
+  composes: button;
+  font-family: 'Lora', serif;
+}
+
+.navMenuOption {
+  width: 100%;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.editorSettingContainer {
+  width: auto;
+}
+
+.editorSettingItem {
+  margin: 4px 0;
+}
+
+.saveButton {
+  height: 32px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 0 15px;
+  font-family: Open Sans, sans-serif;
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+
+.saveButton:active {
+  transform: scale(0.98);
+}
+
+.publishButton {
+  composes: saveButton;
+  color: #fff;
+  background-color: deepskyblue;
+}
+
+.draftButton {
+  composes: saveButton;
+  color: #fff;
+  background-color: salmon;
+}

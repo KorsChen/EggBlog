@@ -1,0 +1,122 @@
+/* global setting */
+
+/* code mirror setting */
+:global .CodeMirror {
+  height: auto;
+  min-height: calc(100vh - 65px - 20px);
+}
+
+:global .CodeMirror pre {
+  font-size: 1rem;
+}
+
+.articleEditWrapper {
+  height: calc(100vh - 65px);
+  padding: 10px 0;
+}
+
+/**
+  可能要删除的
+ */
+/*.editorWrapper {*/
+  /*width: 100%;*/
+  /*overflow-x: hidden;*/
+  /*overflow-y: auto;*/
+/*}*/
+
+.editor {
+  width: 50%;
+  height: 100%;
+  opacity: 1;
+  position: relative;
+  padding: 0;
+  overflow: auto;
+  transition: opacity 400ms 100ms ease, width 500ms ease, padding 500ms ease;
+}
+
+.editorOnly {
+  composes: editor;
+  width: 100%;
+  max-width: 2000px;
+  opacity: 1;
+  padding: 0 230px;
+  transition: all 500ms ease;
+}
+
+.editorHide {
+  composes: editor;
+  width: 0;
+  opacity: 0;
+  padding: 0 0;
+  transition: all 500ms ease;
+}
+
+/**
+  可能要删除的
+ */
+/*.editorHide .editorWrapper {*/
+  /*width: calc(100vw - 460px);*/
+  /*!*width: 671px;*!*/
+/*}*/
+
+/* previewer setting */
+:global .emoji {
+  height: 1.2em;
+}
+
+:global .token.inserted {
+  color: #50fa7b;
+  background: transparent;
+}
+
+:global .token.deleted {
+  color: #ff5555;
+  background: transparent;
+}
+
+:global .token.keyword {
+  font-weight: 900;
+}
+
+/**
+  可能要删除的
+ */
+/*.previewWrapper {*/
+  /*width: 100%;*/
+  /*overflow-x: hidden;*/
+  /*overflow-y: auto;*/
+/*}*/
+
+.preview {
+  width: 50%;
+  height: 100%;
+  padding: 0 10px;
+  overflow: auto;
+  opacity: 1;
+  transition: all 500ms ease;
+}
+
+.previewOnly {
+  composes: preview;
+  width: 100%;
+  max-width: 2000px;
+  opacity: 1;
+  padding: 0 230px;
+  transition: all 500ms ease;
+}
+
+.previewHide {
+  composes: preview;
+  width: 0;
+  opacity: 0;
+  padding: 0 0;
+  transition: all 500ms ease;
+}
+
+/**
+  可能要删除的
+ */
+/*.previewHide .previewWrapper {*/
+  /*width: calc(100vw - 460px);*/
+  /*!*width: 671px;*!*/
+/*}*/
