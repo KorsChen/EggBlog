@@ -1,16 +1,23 @@
-import { ADD, DEL } from './constant';
+import { LOGIN } from './constant';
 
-export const add = item => {
-  console.log('item', item);
-  return {
-    type: ADD,
-    item
-  };
-};
+// export const add = item => {
+//   console.log('item', item);
+//   return {
+//     type: ADD,
+//     item
+//   };
+// };
 
-export const del = id => {
+// export const del = id => {
+//   return {
+//     type: DEL,
+//     id
+//   };
+// };
+
+export const login = id => {
   return {
-    type: DEL,
+    type: LOGIN,
     id
   };
 };

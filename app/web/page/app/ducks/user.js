@@ -183,6 +183,7 @@ const user = (
 
 export {
   user,
+  USER_LOG_IN,
   userLogin,
   userLogout,
   fetchLoginData,

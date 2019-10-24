@@ -3,21 +3,17 @@ import React from 'react';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 
 import styles from './Login.module.css';
-
 import https from '../../../../utils/https';
 
 class LoginForm extends React.Component {
+
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { form, userLogin, saveLoginData, closeModal } = this.props;
+    const { form, userLogin, saveLoginData, closeModal, login } = this.props;
     const { username, password, rememberMe } = form.getFieldsValue();
 
-    console.log('this.props-------------' + JSON.stringify(this.props) );
-    console.log('this.props-------------' + JSON.stringify(form.getFieldsValue()) );
-
     form.validateFields((err, values) => {
-      console.log('validateFields-------------' + JSON.stringify(this.props) );
 
       if (!err) {
         console.log('Received values of form: ', values);
@@ -34,9 +30,8 @@ class LoginForm extends React.Component {
         )
         .then(res => {
           if (res.status === 200) {
-            console.log('login----------------' + JSON.stringify(res));
             closeModal();
-            this.forceUpdate();
+            userLogin(res);
             message.success('Login successfully.');
           } else {
             message.warn('Login Error:' + JSON.stringify(res));

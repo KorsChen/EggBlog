@@ -21,15 +21,15 @@ import NoMatchPage from './components/no-match/NoMatch';
 import { fetchArticles } from "./ducks/articles";
 import { fetchLoginData } from "./ducks/user";
 
-import configureStore from './ducks/store';
+// import configureStore from './ducks/store';
 
-const store = configureStore();
+// const store = configureStore();
 
 class App extends React.Component {
   componentDidMount() {
     // App init.
-    store.dispatch(fetchArticles());
-    store.dispatch(fetchLoginData());
+    // store.dispatch(fetchArticles());
+    // store.dispatch(fetchLoginData());
   }
 
   render() {

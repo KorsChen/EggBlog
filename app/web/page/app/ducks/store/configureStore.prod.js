@@ -1,11 +1,11 @@
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
 
 // import middleware
 import thunk from 'redux-thunk';
 
 // import reducer
-import reducer from "../reducer";
+import reducer from '../reducer';
 
 function configureStore(preLoadedState) {
   // middleware

@@ -1,4 +1,4 @@
-import { LIST, ADD, DEL } from './constant';
+import { USER_LOG_IN } from '../../ducks/user';
 
 export default function update(state, action) {
   const newState = Object.assign({}, state);
@@ -13,5 +13,9 @@ export default function update(state, action) {
   // } else if (action.type === LIST) {
   //   newState.list = action.list;
   // }
+  if (action.type === USER_LOG_IN) {
+    newState.isLoggedIn = true;
+    console.log('state=======' + newState);
+  }
   return newState;
 }
