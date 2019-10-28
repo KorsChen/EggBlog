@@ -10,9 +10,10 @@ const mapState = (state, ownProps) => (
   {
     id: ownProps.id,
     markdown: ownProps.markdown,
-    isUpdatingFinished: state.articles.isUpdatingFinished,
-    updatedPart: state.articles.updatedPart,
-    error: state.articles.error
+    // isUpdatingFinished: state.articles.isUpdatingFinished,
+    isUpdatingFinished: true,
+    // updatedPart: state.articles.updatedPart,
+    // error: state.articles.error
   }
 );
 

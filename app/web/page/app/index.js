@@ -5,17 +5,14 @@ import {match, RouterContext} from 'react-router'
 import { BrowserRouter, StaticRouter } from 'react-router-dom';
 import { matchRoutes, renderRoutes } from 'react-router-config';
 import { AppContainer } from 'react-hot-loader';
-import Layout from '../../component/layout';
 import App from './App';
 import { create } from './components/store';
 // import routes from './components/router'
 import './index.css';
-import { json } from 'body-parser';
 
 const clientRender = () => {
   const store = create(window.__INITIAL_STATE__);
   const { articles } = store.getState();
-  console.log('1>>>url', JSON.stringify(articles));
   const Entry = () => (<div>
     <Provider store={ store }>
       <BrowserRouter forceRefresh={true}>

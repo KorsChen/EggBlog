@@ -1,29 +1,30 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { updateArticle } from "../ducks/articles";
+import { updateArticle } from '../ducks/articles';
 
 import { InfoSettingPreview } from '../components/article-edit/ArticleInfoSettingPreview';
-import { WrappedFormInModal as InfoSettingForm } from "../components/article-edit/ArticleInfoSettingForm";
+import { WrappedFormInModal as InfoSettingForm } from '../components/article-edit/ArticleInfoSettingForm';
 
 const mapState = (state) => {
-  const articleID = state.currentEdit.id;
+  // const selectedArticle = state.articles.data.find(article => article.id === articleID);
 
-  const selectedArticle = state.articles.data.find(article => article.id === articleID);
-
-  if (selectedArticle && Object.keys(selectedArticle).length !== 0) {
-    const { id, title, excerpt, tags, author, cover } = selectedArticle;
-
+  // if (selectedArticle && Object.keys(selectedArticle).length !== 0) {
+  const { articleID, title, excerpt, tags, author, coverUrl } = state;
+  if (coverUrl) {
     return {
-      id,
+      id: articleID,
       title,
       excerpt,
       tags,
       author,
-      coverUrl: cover.url
+      coverUrl: coverUrl
     };
   }
 
-  return {};
+  return {
+    id: articleID,
+    author: 'KorsChen'
+  };
 };
 
 const mapDispatch = {

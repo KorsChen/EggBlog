@@ -11,7 +11,9 @@ const UserNavMenu = (props) => {
   const { history, error, createArticle, userLogout, isLoggedIn, isCreatingFinished, createArticleStatusReset, ...rest } = props;
 
   const handleClickOnNewArticle = () => {
-    createArticle();
+    // createArticle();
+    history.push('/article/new');
+
   };
 
   const handleLogout = () => {
@@ -36,9 +38,10 @@ const UserNavMenu = (props) => {
           ? (
             <Menu {...rest}>
               <Menu.Item key="1">
-                <button className={styles.navMenuOption} onClick={handleClickOnNewArticle}>
+                {/* <button className={styles.navMenuOption} onClick={handleClickOnNewArticle}>
                   New Article
-                </button>
+                </button> */}
+                <Link to={'/article/new'}>New Article</Link>
               </Menu.Item>
               <Menu.Item key="2">
                 <Link to={'/drafts'}>My Draft</Link>

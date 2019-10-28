@@ -227,8 +227,8 @@ class ArticleEdit extends Component {
     return (
       <>
         {
-          isLoggedIn
-            ? (
+          // isLoggedIn
+          //   ? (
               <div>
                 <Prompt
                   when={isMarkdownTouch}
@@ -274,9 +274,9 @@ class ArticleEdit extends Component {
                   </Row>
                 </ScrollSync>
               </div>
-            ) : (
-              <Redirect to='/articles'/>
-            )
+            // ) : (
+            //   <Redirect to='/articles'/>
+            // )
         }
       </>
     );

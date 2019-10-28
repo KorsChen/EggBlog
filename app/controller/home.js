@@ -50,7 +50,6 @@ module.exports = app => {
         const month = articleTime.getMonth() + 1 > 10 ? articleTime.getMonth() : '0' + (articleTime.getMonth() + 1);
         const date = articleTime.getDate() > 10 ? articleTime.getDate() : '0' + articleTime.getDate();
         articleTime = year + '-' + month + '-' + date;
-        console.log('articleID-----------------' + JSON.stringify(articleTime));
       }
       await ctx.renderClient('app.js', { article, user: session.user });
     }
@@ -89,7 +88,6 @@ module.exports = app => {
       const pageNum = Math.ceil(articleNum / 8);
 
       if(user) {
-        console.log('login-----------------' + JSON.stringify(ctx));
         await ctx.renderClient('app.js', { 
           articles,
           user,
@@ -98,6 +96,29 @@ module.exports = app => {
           page
         },);
       }
+    }
+
+    async newArticle() {
+      const { ctx } = this;
+      const { request, req, response } = ctx;
+      const insert = 'INSERT article SET articleTitle=' + app.mysql.escape('无') +
+      ',articleAuthor=' + app.mysql.escape('KorsChen') +
+      ',articleContent=' + app.mysql.escape('未编辑') + ',articleTime=CURDATE()';
+      const article = await app.mysql.query(insert);
+      console.log('article----------' + JSON.stringify(article));
+      const { insertId } = article;
+      if (insertId) {
+        await ctx.renderClient('app.js', { articleID: insertId });
+      }
+    }
+
+
+    async edit() {
+      const { ctx } = this;
+      const { request, req, response } = ctx;
+      const { query, session } = req;
+
+      await ctx.renderClient('app.js', { articleID: insertId });
     }
 
     async list() {

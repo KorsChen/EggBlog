@@ -27,17 +27,17 @@ const EditPageHeader = ({
         <LogoButton/>
       </Link>
     </Col>
-    <Col span={2} offset={6}>
+    {/* <Col span={2} offset={6}>
       <ArticleEditSaveContainer
         id={id}
         markdown={markdown}
       />
-    </Col>
+    </Col> */}
     <Col span={1}>
-      <ArticleExportContainer />
-    </Col>
-    <Col span={1}>
-      <ArticleInfoSetting />
+      <ArticleInfoSetting 
+        id={id}
+        markdown={markdown}
+      />
     </Col>
     <Col span={1}>
       <EditorSettingButton
@@ -76,7 +76,7 @@ class GeneralHeader extends Component {
 
 const LogoButton = () => (
   <button className={styles.logo}>
-    KorsChen的博客
+    KorsChen's Markdown
   </button>
 );
 
