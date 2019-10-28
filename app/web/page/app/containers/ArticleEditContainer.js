@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { updateContentEditStatus } from '../ducks/currentEdit';
 
 import ArticleEdit from '../components/article-edit/ArticleEdit';
+import { stat } from 'fs';
 
 const mapState = (state, ownProps) => {
   console.log('mapState-----state--------' + JSON.stringify(state));
@@ -31,7 +32,8 @@ const mapState = (state, ownProps) => {
 
   return {
     isLoggedIn: true,
-    id: state.articleID
+    id: state.articleID,
+    markdown: state.markdown
   };
 };
 

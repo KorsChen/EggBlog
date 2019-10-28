@@ -104,7 +104,7 @@ class ArticleInfoForm extends Component {
     // 这里只需要使用data提交表单的数据即可
     // console.log(data);
 
-    const { id, updateArticle } = this.props;
+    const { id, markdown } = this.props;
     const { title, excerpt, tags, author, coverUrl } = data;
 
     // 将authorName，authorLink都保存起来
@@ -113,11 +113,7 @@ class ArticleInfoForm extends Component {
       url: coverUrl
     };
 
-    updateArticle(
-      id,
-      { title, excerpt, tags, author, cover, updatedAt: generateTimeString() },
-      'info setting'
-    );
+    
 
     this.props.afterSubmit();
     // console.log(metaData);

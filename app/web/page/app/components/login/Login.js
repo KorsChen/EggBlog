@@ -14,7 +14,6 @@ class LoginModal extends React.Component {
   }
 
   showModal = () => {
-    console.log('showModal==============' + this.state.visible);
     this.setState({
       visible: true,
     });

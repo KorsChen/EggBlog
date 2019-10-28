@@ -9,7 +9,7 @@ const mapState = (state) => {
   // const selectedArticle = state.articles.data.find(article => article.id === articleID);
 
   // if (selectedArticle && Object.keys(selectedArticle).length !== 0) {
-  const { articleID, title, excerpt, tags, author, coverUrl } = state;
+  const { articleID, title, excerpt, tags, author, coverUrl, markdown } = state;
   if (coverUrl) {
     return {
       id: articleID,
@@ -17,7 +17,8 @@ const mapState = (state) => {
       excerpt,
       tags,
       author,
-      coverUrl: coverUrl
+      coverUrl,
+      markdown
     };
   }
 
