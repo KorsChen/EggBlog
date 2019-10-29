@@ -7,10 +7,7 @@ import ArticleList from '../components/article-list/ArticleList';
 const mapState = (state) => (
   {
     articles: state.articles,
-    isFetching: state.articles.isFetching,
-    isLoggedIn: state.isLoggedIn,
-    isRemovingFinished: state.articles.isRemovingFinished,
-    error: state.articles.error
+    isLoggedIn: state.isLoggedIn
   }
 );
 

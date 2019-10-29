@@ -11,7 +11,7 @@ import styles from "./ArticleList.module.css";
 
 dayjs.extend(relativeTime);
 
-const ArticlesPage = ({ articles, error, isFetching, isLoggedIn, isRemovingFinished, selectArticle, removeArticle, removeArticleStatusReset }) => {
+const ArticlesPage = ({ articles, isLoggedIn, selectArticle, removeArticle, removeArticleStatusReset }) => {
   let ArticleList = undefined;
 
   if (Array.isArray(articles)) {
@@ -20,8 +20,6 @@ const ArticlesPage = ({ articles, error, isFetching, isLoggedIn, isRemovingFinis
         metaData={data}
         key={data.articleID}
         isLoggedIn={isLoggedIn}
-        selectArticle={() => selectArticle(data.articleID)}
-        deleteArticle={() => removeArticle(data.articleID)}
       />
     ));
   }
@@ -30,22 +28,15 @@ const ArticlesPage = ({ articles, error, isFetching, isLoggedIn, isRemovingFinis
     <Icon type='loading' className={styles.spinIndicator}/>
   );
 
-  if (isRemovingFinished && error) {
-    message.error('Failed to delete article.');
-  } else if (isRemovingFinished) {
-    message.success('The article has been deleted.');
-    removeArticleStatusReset();
-  }
-
   return (
     <div className={styles.pageContainer}>
       {
-        isFetching?
-          (
-            <div className={styles.spinContainer}>
-              <Spin tip={'Loading...'} indicator={SpinIndicator}/>
-            </div>
-          ) :  null
+        // isFetching?
+        //   (
+        //     <div className={styles.spinContainer}>
+        //       <Spin tip={'Loading...'} indicator={SpinIndicator}/>
+        //     </div>
+        //   ) :  null
       }
       <>
         <Header/>

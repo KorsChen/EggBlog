@@ -7,8 +7,7 @@ import { stat } from 'fs';
 import { articles } from '../ducks/articles';
 
 const mapState = (state, ownProps) => {
-  console.log('mapState-----state--------' + JSON.stringify(state));
-  console.log('mapState-----ownProps--------' + JSON.stringify(ownProps));
+
   const { article = {}, isLoggedIn } = state;
   const {
     articleID,

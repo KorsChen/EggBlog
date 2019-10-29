@@ -4,17 +4,9 @@ import { selectArticle, removeArticle, removeArticleStatusReset } from '../ducks
 
 import DraftList from '../components/article-list/ArticleDraftList';
 
-const selectTheDraftArticles = (list = []) => {
-  return list.filter((article) => article.isPublished === false);
-};
-
-
 const mapState = (state) => (
   {
-    drafts: selectTheDraftArticles(state.articles.data),
-    isLoggedIn: state.isLoggedIn,
-    isRemovingFinished: state.articles.isRemovingFinished,
-    error: state.articles.error
+    isLoggedIn: state.isLoggedIn
   }
 );
 

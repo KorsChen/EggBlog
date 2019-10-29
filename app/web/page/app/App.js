@@ -30,6 +30,9 @@ class App extends React.Component {
     // App init.
     // store.dispatch(fetchArticles());
     // store.dispatch(fetchLoginData());
+   window.onpopstate = () => {
+    window.location.reload();
+   }
   }
 
   render() {

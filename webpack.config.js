@@ -17,5 +17,9 @@ module.exports = {
   },
   node: {
     fs: 'empty'
+  },
+  devServer:{
+    contentBase:'./',
+    historyApiFallback: true
   }
 };

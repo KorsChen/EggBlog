@@ -11,7 +11,7 @@ import styles from "./ArticleList.module.css";
 
 dayjs.extend(relativeTime);
 
-const ArticleDraftListPage = ({ drafts, error, isLoggedIn, isRemovingFinished, removeArticleStatusReset }) => {
+const ArticleDraftListPage = ({ drafts, isLoggedIn, removeArticleStatusReset }) => {
   let DraftList = undefined;
 
   if (Array.isArray(drafts)) {
@@ -22,13 +22,6 @@ const ArticleDraftListPage = ({ drafts, error, isLoggedIn, isRemovingFinished, r
         isLoggedIn={isLoggedIn}
       />
     ));
-  }
-
-  if (isRemovingFinished && error) {
-    message.error('Failed to delete article.');
-  } else if (isRemovingFinished) {
-    message.success('The article has been deleted.');
-    removeArticleStatusReset();
   }
 
   return (
