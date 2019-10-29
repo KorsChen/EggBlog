@@ -17,8 +17,8 @@ module.exports = app => {
       const articles = await app.mysql.query(queryArticles);
       articles.forEach((ele) => {
         const year = ele.articleTime.getFullYear();
-        const month = ele.articleTime.getMonth() + 1 > 10 ? ele.articleTime.getMonth() : '0' + (ele.articleTime.getMonth() + 1);
-        const date = ele.articleTime.getDate() > 10 ? ele.articleTime.getDate() : '0' + ele.articleTime.getDate();
+        const month = ele.articleTime.getMonth() + 1 >= 10 ? ele.articleTime.getMonth() + 1 : '0' + (ele.articleTime.getMonth() + 1);
+        const date = ele.articleTime.getDate() >= 10 ? ele.articleTime.getDate() : '0' + ele.articleTime.getDate();
         ele.articleTime = year + '-' + month + '-' + date;
       });
 
@@ -46,8 +46,8 @@ module.exports = app => {
       if (article) {
         let { articleTime } = article;
         const year = articleTime.getFullYear();
-        const month = articleTime.getMonth() + 1 > 10 ? articleTime.getMonth() : '0' + (articleTime.getMonth() + 1);
-        const date = articleTime.getDate() > 10 ? articleTime.getDate() : '0' + articleTime.getDate();
+        const month = articleTime.getMonth() + 1 >= 10 ? articleTime.getMonth() + 1 : '0' + (articleTime.getMonth() + 1);
+        const date = articleTime.getDate() >= 10 ? articleTime.getDate() : '0' + articleTime.getDate();
         articleTime = year + '-' + month + '-' + date;
       }
       await ctx.renderClient('app.js', { article, isLoggedIn: session.user ? true : false });

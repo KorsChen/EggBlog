@@ -97,18 +97,18 @@ class ArticleItem extends Component{
             </Col>
             <Col>
               {
-                dayjs(articleTime).format('M. D, YYYY') === dayjs(postedAt).format('M. D, YYYY')
-                  ? (
+                // dayjs(articleTime).format('M. D, YYYY') === dayjs(articleTime).format('M. D, YYYY')
+                //   ? (
                     <span>
-                      {dayjs(postedAt).fromNow()}
+                      {articleTime}
                     </span>
-                  ) : (
-                    <Tooltip title={DisplayUpdatedTime}>
-                      <div className={styles.postedTimeWithUpdated}>
-                        {dayjs(postedAt).fromNow()}
-                      </div>
-                    </Tooltip>
-                  )
+                  // ) : (
+                  //   <Tooltip title={DisplayUpdatedTime}>
+                  //     <div className={styles.postedTimeWithUpdated}>
+                  //       {dayjs(articleTime).fromNow()}
+                  //     </div>
+                  //   </Tooltip>
+                  // )
               }
             </Col>
           </Row>
