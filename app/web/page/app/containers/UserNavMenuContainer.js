@@ -9,15 +9,12 @@ import { UserNavMenu } from '../components/header/UserNavMenu';
 const mapState = (state) => (
   {
     state,
-    isLoggedIn: state.isLoggedIn,
-    isCreatingFinished: state.articles.isCreatingFinished,
-    error: state.articles.error
+    isLoggedIn: state.isLoggedIn
   }
 );
 
 const mapDispatch = {
   createArticle,
-  createArticleStatusReset,
   userLogout
 };
 

@@ -57,8 +57,8 @@ class ArticleItem extends Component{
   };
 
   render() {
-    const { articleID, articleTitle, articleAuthor, articleTags=[], articleExcerpt='', articleTime, postedAt } = this.props.metaData;
-
+    const { articleID, articleTitle, articleAuthor, articleTags, articleExcerpt='', articleTime, postedAt } = this.props.metaData;
+    const tags = (articleTags && articleTags !== null) ? articleTags.split(',') : [];
     const { isLoggedIn } = this.props;
 
     const toReadPage = {
@@ -139,7 +139,7 @@ class ArticleItem extends Component{
           <Row className={styles.bottomBar} type='flex' justify='space-between'>
             <Col>
               <div className={styles.tagList}>
-                {/* <TagGroup tags={articleTags}/> */}
+                <TagGroup tags={tags}/>
               </div>
             </Col>
             <Col>

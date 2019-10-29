@@ -94,7 +94,7 @@ module.exports = app => {
       const article = await app.mysql.query(insert);
       const { insertId } = article;
       if (insertId) {
-        await ctx.renderClient('app.js', { articleID: insertId });
+        await ctx.renderClient('app.js', { article: { articleID: insertId } });
       }
     }
 
@@ -132,7 +132,6 @@ module.exports = app => {
         excerpt='', 
         coverUrl=''
       } = request.body;
-
       const update = 'UPDATE article SET articleTitle=' + app.mysql.escape(title) +
       ',articleContent=' + app.mysql.escape(markdown) +
       // ',articleTime=' + app.mysql.escape(new Date().toJSON()) +
@@ -141,7 +140,9 @@ module.exports = app => {
       ',articleCoverUrl=' + app.mysql.escape(coverUrl) +
       ',articleAuthor=' + app.mysql.escape(author) +
       ' WHERE articleID=' + app.mysql.escape(id);
+      console.log('update-----------' + update);
       const article = await app.mysql.query(update);
+      console.log('article-----------' + JSON.stringify(article));
       await ctx.renderClient('app.js');
     }
 

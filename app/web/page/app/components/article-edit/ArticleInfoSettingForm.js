@@ -118,11 +118,12 @@ class ArticleInfoForm extends Component {
     const { id, markdown } = this.props;
     const { title, excerpt, tags, author, coverUrl } = data;
 
-    // 将authorName，authorLink都保存起来
-    const cover = {
-      ...this.state.cover,
-      url: coverUrl
-    };
+    let strTags = '';
+    if (tags.length > 0) {
+      tags.forEach((value) => {
+        strTags = strTags ? strTags + ',' + value : strTags + value;
+      });
+    }
 
     https
     .post(
@@ -132,7 +133,7 @@ class ArticleInfoForm extends Component {
         markdown,
         title,
         excerpt,
-        tags,
+        tags: strTags,
         author,
         coverUrl
       },

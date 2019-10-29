@@ -8,7 +8,7 @@ import styles from "./Header.module.css";
 
 const UserNavMenu = (props) => {
   console.log('UserNavMenu--------------' + JSON.stringify(isLoggedIn));
-  const { history, error, createArticle, userLogout, isLoggedIn, isCreatingFinished, createArticleStatusReset, ...rest } = props;
+  const { history, error, createArticle, userLogout, isLoggedIn, ...rest } = props;
 
   const handleLogout = () => {
     https
@@ -26,16 +26,6 @@ const UserNavMenu = (props) => {
       message.warn('logged out Request Error:' + JSON.stringify(err));
     }); 
   };
-
-  if (isCreatingFinished && error) {
-    message.error('Failed to update article.');
-  } else if (isCreatingFinished) {
-    message.success('New article has been created.');
-    createArticleStatusReset();
-
-    // jump to the new article editing page after it has been created successfully
-    history.push('/article/new');
-  }
 
   return (
     <>
