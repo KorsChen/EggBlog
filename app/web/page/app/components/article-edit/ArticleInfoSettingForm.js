@@ -127,7 +127,7 @@ class ArticleInfoForm extends Component {
 
     https
     .post(
-      `${id}/save`,
+      '/article/save',
       {
         id,
         markdown,

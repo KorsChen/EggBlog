@@ -8,6 +8,6 @@ module.exports = app => {
   app.get('/logout', app.controller.home.logout);
 
   app.post('/login', app.controller.home.login);
-  app.post('/article/:articleID/save', app.controller.home.save);
+  app.post('/article/save', app.controller.home.save);
   app.post('/delete/:articleID', app.controller.home.delete);
 };
