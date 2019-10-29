@@ -4,10 +4,10 @@
 markdown blog just for fun
 
 ## Base On
-后端采用Egg框架，服务端渲染骨架
-前端采用React + Redux + Router全家桶
-数据库采用mysql
-文本编辑支持markdown和编辑预览能力
+后端：Egg框架，服务端渲染骨架，无需pm2部署<br/>
+前端：React + Redux + Router全家桶<br/>
+数据库：mysql<br/>
+文本：支持markdown和编辑预览功能<br/>
 
 ## Content
 > Articles Read <br/>
