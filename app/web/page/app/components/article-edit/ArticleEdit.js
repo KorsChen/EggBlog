@@ -238,6 +238,7 @@ class ArticleEdit extends Component {
                 <Header
                   id={this.props.id}
                   markdown={this.state.markdown}
+                  article={this.props.article}
                   toggleDisplayMode={this.handleDisplayModeChange}
                   toggleScrollSync={this.handleScrollSyncToggle}
                 />

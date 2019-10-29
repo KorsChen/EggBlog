@@ -79,6 +79,7 @@ class ArticleInfoSettingModal extends React.Component {
           <InfoSettingForm
             markdown={this.state.markdown}
             id={this.state.id}
+            article={this.props.article}
             afterSubmit={this.handleCancel}
           />
         </Modal>

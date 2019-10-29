@@ -124,11 +124,9 @@ class ArticleInfoForm extends Component {
       url: coverUrl
     };
 
-    console.log('onSubmit--------------------' + JSON.stringify(data) + '-------props' + JSON.stringify(this.props));
-
     https
     .post(
-      `${id}/edit`,
+      `${id}/save`,
       {
         id,
         markdown,
@@ -161,7 +159,7 @@ class ArticleInfoForm extends Component {
 
     const { getFieldDecorator, getFieldsError } = this.props.form;
 
-    const { title, excerpt, tags, author, coverUrl } = this.props;
+    const { articleTitle, articleExcerpt, articleTags, articleAuthor, articleCoverUrl } = this.props.article;
 
     return (
       <div>
@@ -171,7 +169,7 @@ class ArticleInfoForm extends Component {
             label={'Title'}
           >
             {getFieldDecorator('title', {
-              initialValue: title,
+              initialValue: articleTitle,
               rules: [
                 {
                   required: true,
@@ -191,7 +189,7 @@ class ArticleInfoForm extends Component {
             label={'Excerpt'}
           >
             {getFieldDecorator('excerpt', {
-              initialValue: excerpt,
+              initialValue: articleExcerpt,
               rules: [
                 {
                   required: true,
@@ -215,7 +213,7 @@ class ArticleInfoForm extends Component {
             label='Tags'
           >
             {getFieldDecorator('tags', {
-              initialValue: tags,
+              initialValue: articleTags,
               rules: [{
                 max: 4,
                 type: 'array',
@@ -234,7 +232,7 @@ class ArticleInfoForm extends Component {
             label={'Author Name'}
           >
             {getFieldDecorator('author', {
-              initialValue: author,
+              initialValue: articleAuthor,
               rules: [
                 {
                   required: true,
@@ -254,7 +252,7 @@ class ArticleInfoForm extends Component {
             label={'Cover Url'}
           >
             {getFieldDecorator('coverUrl', {
-              initialValue: coverUrl,
+              initialValue: articleCoverUrl,
               rules: [{
                 validator: this.checkCoverUrl
               }]

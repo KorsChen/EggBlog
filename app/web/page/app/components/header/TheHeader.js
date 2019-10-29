@@ -14,10 +14,12 @@ import { EditorSettingButton } from "./EditorSetting";
 import { UserNavButton } from "./UserNavButton";
 
 import styles from './Header.module.css';
+import { articles } from "../../ducks/articles";
 
 const EditPageHeader = ({
   id,
   markdown,
+  article,
   toggleDisplayMode,
   toggleScrollSync
 }) => (
@@ -37,6 +39,7 @@ const EditPageHeader = ({
       <ArticleInfoSetting 
         id={id}
         markdown={markdown}
+        article={article}
       />
     </Col>
     <Col span={1}>

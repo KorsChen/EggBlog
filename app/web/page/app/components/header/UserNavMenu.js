@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Menu, message } from "antd";
-
+import https from '../../utils/https';
 import { LoginModal } from '../login/Login';
 
 import styles from "./Header.module.css";
@@ -10,15 +10,21 @@ const UserNavMenu = (props) => {
   console.log('UserNavMenu--------------' + JSON.stringify(isLoggedIn));
   const { history, error, createArticle, userLogout, isLoggedIn, isCreatingFinished, createArticleStatusReset, ...rest } = props;
 
-  const handleClickOnNewArticle = () => {
-    // createArticle();
-    history.push('/article/new');
-
-  };
-
   const handleLogout = () => {
-    userLogout();
-    message.success('You have logged out.')
+    https
+    .get('/logout')
+    .then(res => {
+      if (res.status === 200) {
+        message.success('You have logged out.')
+        window.location.reload()
+      } else {
+        message.warn('logged out Error:' + JSON.stringify(res));
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      message.warn('logged out Request Error:' + JSON.stringify(err));
+    }); 
   };
 
   if (isCreatingFinished && error) {
@@ -38,17 +44,14 @@ const UserNavMenu = (props) => {
           ? (
             <Menu {...rest}>
               <Menu.Item key="1">
-                {/* <button className={styles.navMenuOption} onClick={handleClickOnNewArticle}>
-                  New Article
-                </button> */}
                 <Link to={'/article/new'}>New Article</Link>
               </Menu.Item>
-              <Menu.Item key="2">
+              {/* <Menu.Item key="2">
                 <Link to={'/drafts'}>My Draft</Link>
               </Menu.Item>
               <Menu.Item key="3">
                 <Link to={'/articles'}>My Articles</Link>
-              </Menu.Item>
+              </Menu.Item> */}
               <Menu.Divider/>
               {/*<Menu.Item key="4">*/}
               {/*<Link to={'/user'}>User Profile</Link>*/}

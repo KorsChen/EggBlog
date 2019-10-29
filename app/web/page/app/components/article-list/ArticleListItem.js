@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
-import { Col, Icon, Popconfirm, Row, Tag, Tooltip } from "antd";
+import { Link, Redirect } from "react-router-dom";
+import { Col, Icon, Popconfirm, Row, Tag, Tooltip, message } from "antd";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
-
+import https from '../../utils/https';
 import styles from "./ArticleList.module.css";
 import { checkImageUrlIsValid } from "../../utils/index";
 
@@ -32,12 +32,28 @@ class ArticleItem extends Component{
     }
   }
 
-  handleEdit = () => {
-    this.props.selectArticle();
-  };
-
   handleDelete = () => {
-    this.props.deleteArticle();
+    const { articleID } = this.props.metaData;
+    const { isLoggedIn } = this.props;
+    if (articleID && isLoggedIn) {
+      https
+      .post(
+        `/delete/${articleID}`,
+        { articleID },
+      )
+      .then(res => {
+        if (res.status === 200) {
+          message.success('delete successfully.');
+          window.location.reload()
+        } else {
+          message.warn('delete Error:' + JSON.stringify(res));
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        message.warn('delete Request Error:' + JSON.stringify(err));
+      }); 
+    }
   };
 
   render() {
@@ -147,7 +163,6 @@ class ArticleItem extends Component{
                       <Link to={`/article/${articleID}/edit`}>
                         <button
                           className={styles.editOption}
-                          onClick={this.handleEdit}
                           title='Jump to the edit page'
                         >
                           <Icon type="edit" />

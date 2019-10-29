@@ -6,14 +6,14 @@ module.exports = app => {
     async index() {
       const { ctx } = this;
       const { req, url, session } = ctx;
-      const { query } = req;
-
-      const page = (query && query.page) ? query.page : 1;
-      const start = (page - 1) * 8;
-      const end = page * 8;
-      const queryCount = 'SELECT COUNT(*) AS articleNum FROM article';
-      // 新加的文章展示在最前面，一页8篇文章
-      const queryArticles = 'SELECT * FROM article ORDER BY articleID DESC LIMIT ' + start + ',' + end;
+      // const { query } = req;
+      // const page = (query && query.page) ? query.page : 1;
+      // const start = (page - 1) * 8;
+      // const end = page * 8;
+      // const queryCount = 'SELECT COUNT(*) AS articleNum FROM article';
+      // // 新加的文章展示在最前面，一页8篇文章
+      // const queryArticles = 'SELECT * FROM article ORDER BY articleID DESC LIMIT ' + start + ',' + end;
+      const queryArticles = 'SELECT * FROM article ORDER BY articleID DESC';
       const articles = await app.mysql.query(queryArticles);
       articles.forEach((ele) => {
         const year = ele.articleTime.getFullYear();
@@ -22,15 +22,13 @@ module.exports = app => {
         ele.articleTime = year + '-' + month + '-' + date;
       });
 
-      const rows = await app.mysql.query(queryCount);
-      const articleNum = rows[0].articleNum;
-      const pageNum = Math.ceil(articleNum / 8);
+      // const rows = await app.mysql.query(queryCount);
+      // const articleNum = rows[0].articleNum;
+      // const pageNum = Math.ceil(articleNum / 8);
       await ctx.renderClient('app.js', { 
         url,
         articles,
-        isLoggedIn: session.user ? true : false,
-        pageNum,
-        page
+        isLoggedIn: session.user ? true : false
       },);
     }
 
@@ -69,12 +67,7 @@ module.exports = app => {
       const users = await app.mysql.query(queryUser);
       const user = users[0];
 
-      const page = (query && query.page) ? query.page : 1;
-      const start = (page - 1) * 8;
-      const end = page * 8;
-      const queryCount = 'SELECT COUNT(*) AS articleNum FROM article';
-      // 新加的文章展示在最前面，一页8篇文章
-      const queryArticles = 'SELECT * FROM article ORDER BY articleID DESC LIMIT ' + start + ',' + end;
+      const queryArticles = 'SELECT * FROM article ORDER BY articleID DESC';
       const articles = await app.mysql.query(queryArticles);
       articles.forEach((ele) => {
         const year = ele.articleTime.getFullYear();
@@ -83,18 +76,11 @@ module.exports = app => {
         ele.articleTime = year + '-' + month + '-' + date;
       });
 
-      const rows = await app.mysql.query(queryCount);
-      const articleNum = rows[0].articleNum;
-      const pageNum = Math.ceil(articleNum / 8);
-
       if(user) {
         ctx.session.user = user;
         await ctx.renderClient('app.js', { 
           articles,
-          user,
-          isLoggedIn: true,
-          pageNum,
-          page
+          isLoggedIn: true
         },);
       }
     }
@@ -112,15 +98,31 @@ module.exports = app => {
       }
     }
 
-
     async edit() {
       const { ctx } = this;
-      const { request, req, response } = ctx;
-      // const { url = '' } = request;
+      const { request, session } = ctx;
+      const { url = '' } = request;
+      if (session.user) {
+        const endIndex = url.indexOf('/edit');
+        const articleID = url.substring(9, endIndex);
+        const escapeID = app.mysql.escape(articleID);
+        const queryAction = 'SELECT * FROM article WHERE articleID=' + escapeID;
+        const articles = await app.mysql.query(queryAction);
+        const article = articles[0];
+        if (article) {
+          let { articleTime } = article;
+          const year = articleTime.getFullYear();
+          const month = articleTime.getMonth() + 1 > 10 ? articleTime.getMonth() : '0' + (articleTime.getMonth() + 1);
+          const date = articleTime.getDate() > 10 ? articleTime.getDate() : '0' + articleTime.getDate();
+          articleTime = year + '-' + month + '-' + date;
+        }
+        await ctx.renderClient('app.js', { article, isLoggedIn: true });
+      }
+    }
 
-      // const endIndex = url.indexOf('/edit');
-      // const articleID = url.substring(9, endIndex);
-      // const escapeID = app.mysql.escape(articleID);
+    async save() {
+      const { ctx } = this;
+      const { request, req, response } = ctx;
       const { 
         id,
         author,
@@ -130,7 +132,6 @@ module.exports = app => {
         excerpt='', 
         coverUrl=''
       } = request.body;
-      console.log('edit----------' + JSON.stringify(request.body));
 
       const update = 'UPDATE article SET articleTitle=' + app.mysql.escape(title) +
       ',articleContent=' + app.mysql.escape(markdown) +
@@ -141,26 +142,27 @@ module.exports = app => {
       ',articleAuthor=' + app.mysql.escape(author) +
       ' WHERE articleID=' + app.mysql.escape(id);
       const article = await app.mysql.query(update);
-      console.log('edit----------' + JSON.stringify(article));
       await ctx.renderClient('app.js');
-      response.redirect('/');
     }
 
-    async list() {
+    async delete() {
       const { ctx } = this;
-      await ctx.renderClient('list.js', Model.getPage(1, 10));
+      const { request, response, session } = ctx;
+      const { articleID } = request.body;
+      if (session.user && articleID) {
+        const del = 'DELETE FROM article WHERE articleID=' + app.mysql.escape(articleID);
+        await app.mysql.query(del);
+        await ctx.renderClient('app.js');
+      }
     }
 
-    async client() {
+    async logout() {
       const { ctx } = this;
-      await ctx.renderClient('list.js', Model.getPage(1, 10));
-    }
-
-    async pager() {
-      const { ctx } = this;
-      const pageIndex = ctx.query.pageIndex;
-      const pageSize = ctx.query.pageSize;
-      ctx.body = Model.getPage(pageIndex, pageSize);
+      const { session } = ctx;
+      session.user = undefined;
+      await ctx.renderClient('app.js', { 
+        isLoggedIn: false
+      },);
     }
   };
 };

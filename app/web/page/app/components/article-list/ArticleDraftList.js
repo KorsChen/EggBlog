@@ -11,17 +11,15 @@ import styles from "./ArticleList.module.css";
 
 dayjs.extend(relativeTime);
 
-const ArticleDraftListPage = ({ drafts, error, isLoggedIn, isRemovingFinished, selectArticle, removeArticle, removeArticleStatusReset }) => {
+const ArticleDraftListPage = ({ drafts, error, isLoggedIn, isRemovingFinished, removeArticleStatusReset }) => {
   let DraftList = undefined;
 
   if (Array.isArray(drafts)) {
     DraftList = drafts.map(data => (
       <ArticleDraftItem
         metaData={data}
-        key={data.id}
+        key={data.articleID}
         isLoggedIn={isLoggedIn}
-        selectArticle={() => selectArticle(data.id)}
-        deleteArticle={() => removeArticle(data.id)}
       />
     ));
   }

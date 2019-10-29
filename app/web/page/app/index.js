@@ -33,31 +33,4 @@ const clientRender = () => {
   });
 };
 
-// const serverRender = (context, options)=> {
-//   const url = context.state.url;
-//   const branch = matchRoutes(routes, url);
-//   const promises = branch.map(({route}) => {
-//     const fetch = route.component.fetch;
-//     return fetch instanceof Function ? fetch() : Promise.resolve(null)
-//   });
-//   return Promise.all(promises).then(data => {
-//     const initState = context.state;
-//     data.forEach(item => {
-//       Object.assign(initState, item);
-//     });
-//     context.state = Object.assign({}, context.state, initState);
-//     const store = create(initState);
-//     return () =>(
-//       <Layout>
-//         <div>
-//           <Provider store={store}>
-//             <StaticRouter location={url} context={{}}>
-//               <App url={url}/>
-//             </StaticRouter>
-//           </Provider>
-//         </div>
-//       </Layout>
-//     )
-//   });
-// };
 export default clientRender();

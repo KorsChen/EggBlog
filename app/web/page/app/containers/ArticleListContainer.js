@@ -4,12 +4,6 @@ import { selectArticle, removeArticle, removeArticleStatusReset } from '../ducks
 
 import ArticleList from '../components/article-list/ArticleList';
 
-const selectThePublishedArticles = (list = []) => {
-  console.log('list===============' + JSON.stringify(list.articles));
-  // return list.filter((article) => article.isPublished === true);
-  return list;
-};
-
 const mapState = (state) => (
   {
     articles: state.articles,

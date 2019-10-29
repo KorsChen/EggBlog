@@ -4,10 +4,16 @@ import { updateContentEditStatus } from '../ducks/currentEdit';
 
 import ArticleEdit from '../components/article-edit/ArticleEdit';
 import { stat } from 'fs';
+import { articles } from '../ducks/articles';
 
 const mapState = (state, ownProps) => {
   console.log('mapState-----state--------' + JSON.stringify(state));
   console.log('mapState-----ownProps--------' + JSON.stringify(ownProps));
+  const { article = {}, isLoggedIn } = state;
+  const {
+    articleID,
+    articleContent
+  } = article;
   // const isLoggedIn = state.user.isLoggedIn;
   // const isMarkdownTouch = state.currentEdit.isTouch;
 
@@ -31,9 +37,10 @@ const mapState = (state, ownProps) => {
   // }
 
   return {
-    isLoggedIn: true,
-    id: state.articleID,
-    markdown: state.markdown
+    isLoggedIn,
+    id: articleID,
+    markdown: articleContent,
+    article
   };
 };
 
