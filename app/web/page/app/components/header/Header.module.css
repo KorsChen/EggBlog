@@ -19,8 +19,9 @@
 }
 
 .avatar {
-  height: 50px;
-  width: 50px;
+  margin: 0 0;
+  height: 66px;
+  width: 76px;
 }
 
 .button {
