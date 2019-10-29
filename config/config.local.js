@@ -25,7 +25,7 @@ module.exports = () => {
   const domainWhiteList = [];
   [9000, 9001, 9002].forEach(port => {
     domainWhiteList.push(`http://localhost:${port}`);
-    domainWhiteList.push(`http://47.75.106.53:${port}`);
+    domainWhiteList.push(`http://172.31.21.41:${port}`);
     domainWhiteList.push(`http://${localIP}:${port}`);
   });
 
