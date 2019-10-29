@@ -24,7 +24,8 @@ const mapState = (state) => {
 
   return {
     id: articleID,
-    author: 'KorsChen'
+    author: 'KorsChen',
+    markdown
   };
 };
 

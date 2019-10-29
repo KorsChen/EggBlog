@@ -14,7 +14,7 @@ const mapState = (state) => (
   {
     articles: state.articles,
     isFetching: state.articles.isFetching,
-    isLoggedIn: state.user.isLoggedIn,
+    isLoggedIn: state.isLoggedIn,
     isRemovingFinished: state.articles.isRemovingFinished,
     error: state.articles.error
   }

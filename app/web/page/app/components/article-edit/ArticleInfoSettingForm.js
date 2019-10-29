@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 
-import { Row, Col, Button, Form, Input, Select, Collapse, Tabs } from "antd";
+import { Row, Col, Button, Form, Input, Select, Collapse, Tabs, message } from "antd";
 
 import PhotoSearch from "../photo-search/PhotoSearch";
 
 import { checkImageUrlIsValid, generateTimeString } from "../../utils";
 
 import styles from "./ArticleInfoSetting.module.css";
+
+import https from '../../utils/https';
 
 const formItemLayout = {
   labelCol: { span: 6 },
@@ -22,6 +24,7 @@ class ArticleInfoForm extends Component {
         authorName: '',
         authorLink: ''
       },
+      id: props.id,
       isUrlChanged: false,
       isCoverUrlValid: false,
       coverPreviewMsg: 'The preview of cover will be here.'
@@ -33,6 +36,14 @@ class ArticleInfoForm extends Component {
     this.checkCoverUrl(undefined, this.props.coverUrl);
     // To disabled submit button at the beginning.
     this.props.form.validateFields();
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.markdown !== this.props.markdown) {
+      this.setState({
+        markdown: newProps.markdown,
+      });
+    } 
   }
 
   selectCover = (photoData) => {
@@ -113,10 +124,33 @@ class ArticleInfoForm extends Component {
       url: coverUrl
     };
 
-    
+    console.log('onSubmit--------------------' + JSON.stringify(data) + '-------props' + JSON.stringify(this.props));
 
-    this.props.afterSubmit();
-    // console.log(metaData);
+    https
+    .post(
+      `${id}/edit`,
+      {
+        id,
+        markdown,
+        title,
+        excerpt,
+        tags,
+        author,
+        coverUrl
+      },
+    )
+    .then(res => {
+      if (res.status === 200) {
+        this.props.afterSubmit();
+        message.success('Save successfully.');
+      } else {
+        message.warn('Save Error:' + JSON.stringify(res));
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      message.warn('Save Request Error:' + JSON.stringify(err));
+    });    
   };
 
   render() {

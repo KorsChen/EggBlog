@@ -1,11 +1,12 @@
 const Model = require('../mocks/article/list');
 const crypto = require('crypto');
+
 module.exports = app => {
   return class AppController extends app.Controller {
     async index() {
       const { ctx } = this;
-      const { req, url } = ctx;
-      const { query, session } = req;
+      const { req, url, session } = ctx;
+      const { query } = req;
 
       const page = (query && query.page) ? query.page : 1;
       const start = (page - 1) * 8;
@@ -27,7 +28,7 @@ module.exports = app => {
       await ctx.renderClient('app.js', { 
         url,
         articles,
-        user:session ? session.user : '',
+        isLoggedIn: session.user ? true : false,
         pageNum,
         page
       },);
@@ -35,7 +36,7 @@ module.exports = app => {
 
     async article() {
       const { ctx } = this;
-      const { request, req: { session = {} } } = ctx;
+      const { request, session } = ctx;
       const { url = '' } = request;
 
       const endIndex = url.indexOf('/read');
@@ -51,14 +52,13 @@ module.exports = app => {
         const date = articleTime.getDate() > 10 ? articleTime.getDate() : '0' + articleTime.getDate();
         articleTime = year + '-' + month + '-' + date;
       }
-      await ctx.renderClient('app.js', { article, user: session.user });
+      await ctx.renderClient('app.js', { article, isLoggedIn: session.user ? true : false });
     }
 
     async login() {
       const { ctx } = this;
-      const { request, req, response } = ctx;
-      const { query, session } = req;
-
+      const { request, req, response, session } = ctx;
+      const { query } = req;
       const name = request.body.name;
       let password = request.body.password;
       if (!name || !password) return;
@@ -88,6 +88,7 @@ module.exports = app => {
       const pageNum = Math.ceil(articleNum / 8);
 
       if(user) {
+        ctx.session.user = user;
         await ctx.renderClient('app.js', { 
           articles,
           user,
@@ -105,7 +106,6 @@ module.exports = app => {
       ',articleAuthor=' + app.mysql.escape('KorsChen') +
       ',articleContent=' + app.mysql.escape('未编辑') + ',articleTime=CURDATE()';
       const article = await app.mysql.query(insert);
-      console.log('article----------' + JSON.stringify(article));
       const { insertId } = article;
       if (insertId) {
         await ctx.renderClient('app.js', { articleID: insertId });
@@ -116,9 +116,34 @@ module.exports = app => {
     async edit() {
       const { ctx } = this;
       const { request, req, response } = ctx;
-      const { query, session } = req;
+      // const { url = '' } = request;
 
-      await ctx.renderClient('app.js', { articleID: insertId });
+      // const endIndex = url.indexOf('/edit');
+      // const articleID = url.substring(9, endIndex);
+      // const escapeID = app.mysql.escape(articleID);
+      const { 
+        id,
+        author,
+        markdown='',
+        title,
+        tags='',
+        excerpt='', 
+        coverUrl=''
+      } = request.body;
+      console.log('edit----------' + JSON.stringify(request.body));
+
+      const update = 'UPDATE article SET articleTitle=' + app.mysql.escape(title) +
+      ',articleContent=' + app.mysql.escape(markdown) +
+      // ',articleTime=' + app.mysql.escape(new Date().toJSON()) +
+      ',articleExcerpt=' + app.mysql.escape(excerpt) +
+      ',articleTags=' + app.mysql.escape(tags) +
+      ',articleCoverUrl=' + app.mysql.escape(coverUrl) +
+      ',articleAuthor=' + app.mysql.escape(author) +
+      ' WHERE articleID=' + app.mysql.escape(id);
+      const article = await app.mysql.query(update);
+      console.log('edit----------' + JSON.stringify(article));
+      await ctx.renderClient('app.js');
+      response.redirect('/');
     }
 
     async list() {

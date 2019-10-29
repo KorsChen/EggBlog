@@ -11,7 +11,7 @@ import { MarkdownParser, ScrollToTop } from '../../utils';
 import styles from './ArticleRead.module.css';
 
 const ArticleRead = (props) => {
-  const { articleTitle, articleAuthor, cover, excerpt, articleContent, articleTime, updatedAt } = props;
+  const { articleTitle, articleAuthor, articleCoverUrl, articleExcerpt, articleContent, articleTime, updatedAt } = props;
 
   const articleInfo = {
     articleAuthor,
@@ -32,8 +32,8 @@ const ArticleRead = (props) => {
         <Col className={styles.readPageContent}>
           <Title title={articleTitle}/>
           <ArticleInfo {...articleInfo}/>
-          <Excerpt excerpt={excerpt}/>
-          <HeaderPhoto cover={cover} />
+          <Excerpt excerpt={articleExcerpt}/>
+          <HeaderPhoto cover={articleCoverUrl} />
           <Content markdown={articleContent}/>
           <BackTop/>
         </Col>
@@ -50,16 +50,14 @@ const Title = ({ title }) => (
 );
 
 const HeaderPhoto = ({ cover }) => {
-  const { url, ...coverInfo } = cover;
-
   return (
     <div>
       {
-        url
+        cover
           ? (
             <div>
-              <img className={styles.coverImage} src={url} alt="cover"/>
-              <IsPhotoFromUnsplash coverInfo={coverInfo}/>
+              <img className={styles.coverImage} src={cover} alt="cover"/>
+              {/* <IsPhotoFromUnsplash coverInfo={coverInfo}/> */}
             </div>
           ) : (
             null

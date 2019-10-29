@@ -4,13 +4,13 @@ import ArticleRead from '../components/article-read/ArticleRead';
 
 const mapState = (state, ownProps) => {
   
-  const { articleTitle, articleAuthor, excerpt, cover='', articleContent, articleTime, updatedAt } = state.article;
+  const { articleTitle, articleAuthor, articleExcerpt, articleCoverUrl, articleContent, articleTime, updatedAt } = state.article;
 
   return {
     articleTitle,
     articleAuthor,
-    excerpt,
-    cover,
+    articleExcerpt,
+    articleCoverUrl,
     articleContent,
     articleTime,
     updatedAt

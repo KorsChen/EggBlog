@@ -12,7 +12,7 @@ const selectTheDraftArticles = (list = []) => {
 const mapState = (state) => (
   {
     drafts: selectTheDraftArticles(state.articles.data),
-    isLoggedIn: state.user.isLoggedIn,
+    isLoggedIn: state.isLoggedIn,
     isRemovingFinished: state.articles.isRemovingFinished,
     error: state.articles.error
   }

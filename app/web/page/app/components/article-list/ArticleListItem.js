@@ -21,7 +21,7 @@ class ArticleItem extends Component{
 
   async componentDidMount() {
     try {
-      const coverUrl = await checkImageUrlIsValid(this.props.metaData.cover.url);
+      const coverUrl = await checkImageUrlIsValid(this.props.metaData.articleCoverUrl);
 
       this.setState({
         coverUrl: coverUrl,
@@ -41,7 +41,7 @@ class ArticleItem extends Component{
   };
 
   render() {
-    const { articleID, articleTitle, articleAuthor, tags=[], excerpt=[], articleTime, postedAt } = this.props.metaData;
+    const { articleID, articleTitle, articleAuthor, articleTags=[], articleExcerpt='', articleTime, postedAt } = this.props.metaData;
 
     const { isLoggedIn } = this.props;
 
@@ -98,10 +98,10 @@ class ArticleItem extends Component{
           </Row>
           <p className={styles.excerpt}>
             {
-              excerpt.length > 300
+              articleExcerpt !== null && articleExcerpt.length > 300
                 ? (
                   <span>
-                    {excerpt.slice(0, 300) + ' ... '}
+                    {articleExcerpt.slice(0, 300) + ' ... '}
                     <span className={styles.readMoreLink}>
                       <Link to={toReadPage}>
                         Read More
@@ -110,7 +110,7 @@ class ArticleItem extends Component{
                   </span>
                 ) : (
                   <span>
-                    {excerpt + ' '} &nbsp;
+                    {articleExcerpt + ' '} &nbsp;
                     <span className={styles.readMoreLink}>
                       <Link to={toReadPage}>
                         Read More
@@ -123,7 +123,7 @@ class ArticleItem extends Component{
           <Row className={styles.bottomBar} type='flex' justify='space-between'>
             <Col>
               <div className={styles.tagList}>
-                <TagGroup tags={tags}/>
+                {/* <TagGroup tags={articleTags}/> */}
               </div>
             </Col>
             <Col>

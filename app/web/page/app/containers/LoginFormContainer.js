@@ -6,7 +6,7 @@ import { WrappedLoginForm as LoginForm } from '../components/login/LoginForm';
 
 const mapState = (state) => (
   {
-    loginData: state.user.loginData
+    loginData: state.loginData
   }
 );
 

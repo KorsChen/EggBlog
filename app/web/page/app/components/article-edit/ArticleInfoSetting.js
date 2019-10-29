@@ -1,15 +1,17 @@
 import React from "react";
 import { Icon, Popover, Modal } from "antd";
 
-import { InfoSettingPreviewContainer } from "../../containers/ArticleInfoSettingContainer";
-import { InfoSettingFormContainer } from "../../containers/ArticleInfoSettingContainer";
+// import { InfoSettingPreviewContainer } from "../../containers/ArticleInfoSettingContainer";
+// import { InfoSettingFormContainer } from "../../containers/ArticleInfoSettingContainer";
+import { InfoSettingPreview } from './ArticleInfoSettingPreview';
+import { WrappedFormInModal as InfoSettingForm } from './ArticleInfoSettingForm';
 
 import styles from "./ArticleInfoSetting.module.css";
 
 const InfoSettingButton = props => {
   return (
     <Popover
-      content={<InfoSettingPreviewContainer/>}
+      content={<InfoSettingPreview/>}
       title="Article Info Preview"
       trigger={['hover']}
       mouseEnterDelay={0.8}
@@ -26,8 +28,18 @@ class ArticleInfoSettingModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: props.id,
       visible: false,
+      markdown: props.markdown,
     };
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.markdown !== this.props.markdown) {
+      this.setState({
+        markdown: newProps.markdown,
+      });
+    } 
   }
 
   showModal = () => {
@@ -64,7 +76,9 @@ class ArticleInfoSettingModal extends React.Component {
           footer={null}
           destroyOnClose={true}
         >
-          <InfoSettingFormContainer
+          <InfoSettingForm
+            markdown={this.state.markdown}
+            id={this.state.id}
             afterSubmit={this.handleCancel}
           />
         </Modal>
