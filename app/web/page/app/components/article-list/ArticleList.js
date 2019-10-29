@@ -42,7 +42,7 @@ const ArticlesPage = ({ articles, isLoggedIn, selectArticle, removeArticle, remo
         <Header/>
         <Row>
           <Col className={styles.list}>
-            <Divider className={styles.pageIndicator}>Article list</Divider>
+            <Divider className={styles.pageIndicator}>随 笔</Divider>
             {ArticleList? ArticleList: null}
             <BackTop/>
           </Col>

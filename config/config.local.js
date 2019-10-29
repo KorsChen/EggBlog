@@ -25,19 +25,9 @@ module.exports = () => {
   const domainWhiteList = [];
   [9000, 9001, 9002].forEach(port => {
     domainWhiteList.push(`http://localhost:${port}`);
-    domainWhiteList.push(`http://172.31.21.41:${port}`);
+    domainWhiteList.push(`http://127.0.0.1:${port}`);
     domainWhiteList.push(`http://${localIP}:${port}`);
   });
-
-  exports.security = { 
-    domainWhiteList,
-    csrf: {
-      ignoreJSON: true // 默认为 false，当设置为 true 时，将会放过所有 content-type 为 `application/json` 的请求
-    },
-    xframe: {
-      enable: false
-    }
-  };
 
   return exports;
 };
