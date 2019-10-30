@@ -1,20 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
-
 import { Row, Col } from "antd";
-
 import ArticleInfoSetting from '../article-edit/ArticleInfoSetting';
-
-import { ArticleExportContainer } from "../../containers/ArticleExportContainer";
-import { ArticleEditSaveContainer } from '../../containers/ArticleEditSaveContainer';
-
-// import { MoreButton } from "./MoreButton";
 import { EditorSettingButton } from "./EditorSetting";
 import { UserNavButton } from "./UserNavButton";
-
 import styles from './Header.module.css';
-import { articles } from "../../ducks/articles";
 
 const EditPageHeader = ({
   id,

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Menu, message } from "antd";
 import https from '../../utils/https';
 import { LoginModal } from '../login/Login';
-
 import styles from "./Header.module.css";
 
 const UserNavMenu = (props) => {

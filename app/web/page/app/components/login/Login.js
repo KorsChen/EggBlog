@@ -1,8 +1,6 @@
 import React from "react";
 import { Modal } from "antd";
-
 import LoginFormContainer from '../../containers/LoginFormContainer';
-
 import styles from './Login.module.css';
 
 class LoginModal extends React.Component {

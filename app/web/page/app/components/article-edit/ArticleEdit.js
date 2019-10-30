@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect, Prompt } from 'react-router-dom';
+import { Prompt } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 

@@ -4,7 +4,7 @@ import { Row, Col, Button, Form, Input, Select, Collapse, Tabs, message } from "
 
 import PhotoSearch from "../photo-search/PhotoSearch";
 
-import { checkImageUrlIsValid, generateTimeString } from "../../utils";
+import { checkImageUrlIsValid } from "../../utils";
 
 import styles from "./ArticleInfoSetting.module.css";
 

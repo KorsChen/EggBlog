@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'antd';
-
 import { GeneralHeader as Header } from "../header/TheHeader";
-
 import styles from './NoMatch.module.css';
 
 const NoMatchPage = () => (

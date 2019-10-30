@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import { Col, Icon, Popover, Row, Switch, Radio } from "antd";
-
 import styles from "./Header.module.css";
 
 const EditorSettingButton = props => {
