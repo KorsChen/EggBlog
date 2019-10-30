@@ -44,16 +44,13 @@
     "markdown-it-footnote": "^3.0.2",
     "markdown-it-imsize": "^2.0.1",
     "markdown-it-mark": "^2.0.0",
-    "markdown-it-prism": "^1.1.2",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
     "markdown-it-table-of-contents": "^0.4.4",
     "markdown-it-task-lists": "^2.1.1",
     "marked": "^0.7.0",
     "mockjs": "^1.0.1-beta3",
-    "moment": "^2.17.1",
     "normalize.css": "^8.0.1",
-    "prism-themes": "^1.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.0.0",
     "react-addons-css-transition-group": "^15.6.2",
@@ -94,13 +91,15 @@
     "egg-webpack-react": "^2.0.3",
     "eslint-config-egg": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "gh-pages": "^2.1.1",
     "imagemin-webpack-plugin": "^2.3.0",
     "ip": "^1.1.5",
     "react-app-rewired": "^2.1.4",
     "redux-devtools-extension": "^2.13.8",
     "service-worker-register": "^1.2.6",
-    "terser-webpack-plugin": "^2.2.1"
+    "terser-webpack-plugin": "^2.2.1",
+    "webpack-bundle-analyzer": "^3.6.0"
   },
   "engines": {
     "node": ">=8.0.0"

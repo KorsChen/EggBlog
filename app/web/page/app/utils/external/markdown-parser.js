@@ -7,7 +7,7 @@ import emoji from 'markdown-it-emoji';
 // import footnote from 'markdown-it-footnote';
 import imsize from 'markdown-it-imsize';
 import mark from 'markdown-it-mark';
-import prism from 'markdown-it-prism';
+// import prism from 'markdown-it-prism';
 import sub from 'markdown-it-sub';
 import sup from 'markdown-it-sup';
 import taskList from 'markdown-it-task-lists';
@@ -45,7 +45,7 @@ md.use(abbr)
   .use(deflist)
   .use(emoji)
   // .use(footnote)
-  .use(prism)
+  // .use(prism)
   .use(imsize, imsizeOption)
   .use(mark)
   .use(sub)

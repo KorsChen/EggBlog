@@ -312,7 +312,6 @@ const generateStyledHTML = (data) =>
       <title>${data.title}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.0.1/themes/prism-darcula.css">
       <style>
         .emoji {
           height: 1.2em;

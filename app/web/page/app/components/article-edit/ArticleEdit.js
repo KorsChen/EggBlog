@@ -11,7 +11,7 @@ import { MarkdownParser, ScrollToTop } from '../../utils';
 import Editor from './Editor';
 
 import 'github-markdown-css';
-import 'prism-themes/themes/prism-darcula.css';
+// import 'prism-themes/themes/prism-darcula.css';
 
 import styles from './ArticleEdit.module.css';
 
