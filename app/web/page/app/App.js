@@ -13,9 +13,9 @@ import NoMatchPage from './components/no-match/NoMatch';
 
 class App extends React.Component {
   componentDidMount() {
-  //  window.onpopstate = () => {
-  //   window.location.reload();
-  //  }
+   window.onpopstate = () => {
+    window.location.reload();
+   }
   }
 
   render() {
