@@ -39,7 +39,8 @@ module.exports = app => {
       // password
       password: '31449423',
       // database
-      database: 'blog'
+      database: 'blog',
+      charset: 'utf8mb4'
     },
     // load into app, default is open
     app: true,
