@@ -1,22 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import {match, RouterContext} from 'react-router'
-import { BrowserRouter, StaticRouter } from 'react-router-dom';
-import { matchRoutes, renderRoutes } from 'react-router-config';
+import { BrowserRouter, } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 import App from './App';
 import { create } from './components/store';
-// import routes from './components/router'
 import './index.css';
 
 const clientRender = () => {
   const store = create(window.__INITIAL_STATE__);
-  const { articles } = store.getState();
+  // const { articles } = store.getState();
   const Entry = () => (<div>
     <Provider store={ store }>
+      {/* 在做服务端渲染时，需要使用将BrowserRouter 替换为 StaticRouter 区别在于，BrowserRouter 会通过HTML5 提供的 history API来保持页面与URL的同步，而StaticRouter 则不会改变URL */}
       <BrowserRouter forceRefresh={true}>
-        <App articles/>
+        <App/>
       </BrowserRouter>
     </Provider>
   </div>

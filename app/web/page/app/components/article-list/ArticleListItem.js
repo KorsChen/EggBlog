@@ -114,10 +114,10 @@ class ArticleItem extends Component{
           </Row>
           <p className={styles.excerpt}>
             {
-              articleExcerpt !== null && articleExcerpt.length > 600
+              articleExcerpt !== null && articleExcerpt.length > 300
                 ? (
                   <span>
-                    {articleExcerpt.slice(0, 600) + ' ... '}
+                    {articleExcerpt.slice(0, 300) + ' ... '}
                     <span className={styles.readMoreLink}>
                       <Link to={toReadPage}>
                         Read More
@@ -185,10 +185,10 @@ const TagGroup = ({ tags }) => (
   <div>
     {
       tags.map((tag) => {
-        const isLongTag = tag.length > 10;
+        const isLongTag = tag.length > 20;
         const tagElem = (
           <Tag key={tag}>
-            {isLongTag ? `${tag.slice(0, 10)}...` : tag}
+            {isLongTag ? `${tag.slice(0, 20)}...` : tag}
           </Tag>
         );
         return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
