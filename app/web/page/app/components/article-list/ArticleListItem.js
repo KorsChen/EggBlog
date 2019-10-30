@@ -114,10 +114,10 @@ class ArticleItem extends Component{
           </Row>
           <p className={styles.excerpt}>
             {
-              articleExcerpt !== null && articleExcerpt.length > 300
+              articleExcerpt !== null && articleExcerpt.length > 600
                 ? (
                   <span>
-                    {articleExcerpt.slice(0, 300) + ' ... '}
+                    {articleExcerpt.slice(0, 600) + ' ... '}
                     <span className={styles.readMoreLink}>
                       <Link to={toReadPage}>
                         Read More
