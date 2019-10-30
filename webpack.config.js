@@ -21,11 +21,6 @@ module.exports = {
   plugins:[
     { serviceworker: true },
     '@babel/plugin-transform-runtime',
-    ['import', {
-      'libraryName': 'antd',
-      'libraryDirectory': 'es',
-      'style': 'css' // `style: true` 会加载 less 文件
-    }],
     new webpack.optimize.SplitChunksPlugin({
       chunks: 'all',
       minSize: 20000,
@@ -40,8 +35,7 @@ module.exports = {
       test:  /\.js$|\.css$|\.html$/,
       threshold: 10240,//只处理比这个值大的资源。按字节计算
       minRatio: 0.8//只有压缩率比这个值小的资源才会被处理
-    }),
-    new ExtractTextPlugin('bundle.css')
+    })
     // new BundleAnalyzerPlugin({
     //   //  可以是`server`，`static`或`disabled`。
     //   //  在`server`模式下，分析器将启动HTTP服务器来显示软件包报告。
@@ -77,33 +71,7 @@ module.exports = {
     rules: [
       {
         test: /\.less$/,
-        loader: 'less-loader', // compiles Less to CSS
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              modules: true,
-              localIdentName: '[name]__[local]__[hash:base64:5]'
-            }
-          },
-          { 
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: () => [
-                autoprefixer({
-                  browsers: [
-                    '> 1%',
-                    'last 2 versions'
-                  ]
-                })
-              ]
-            }
-          }],
-          publicPath: '../'
-        })
+        loader: 'less-loader' // compiles Less to CSS
       }
     ]
   },
