@@ -100,7 +100,7 @@
     "react-app-rewired": "^2.1.4",
     "redux-devtools-extension": "^2.13.8",
     "service-worker-register": "^1.2.6",
-    "uglifyjs-webpack-plugin": "^2.2.0"
+    "terser-webpack-plugin": "^2.2.1"
   },
   "engines": {
     "node": ">=8.0.0"

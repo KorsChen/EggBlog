@@ -1,5 +1,5 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   target: 'web',
@@ -9,17 +9,6 @@ module.exports = {
   plugins:[
     { serviceworker: true },
     '@babel/plugin-transform-runtime',
-    new UglifyJsPlugin({
-      parallel: 4,
-      uglifyOptions: {
-        output: {
-          comments: false,
-          beautify: false
-        },
-        warnings: false
-      },
-      cache: true
-    }),
     new CompressionPlugin({
       filename: '[path].gz[query]', //目标资源名称。[file] 会被替换成原资源。[path] 会被替换成原资源路径，[query] 替换成原查询字符串
       algorithm: 'gzip',//算法
@@ -45,5 +34,9 @@ module.exports = {
   devServer:{
     contentBase:'./',
     historyApiFallback: true
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()]
   }
 };
