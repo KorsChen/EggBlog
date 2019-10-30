@@ -1,15 +1,8 @@
 import React from "react";
-import { Col, Row, Divider, BackTop, Spin, Icon, message } from "antd";
-
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime'
-
+import { Col, Row, Divider, BackTop } from "antd";
 import { GeneralHeader as Header } from '../header/TheHeader';
 import ArticleItem from './ArticleListItem';
-
 import styles from "./ArticleList.module.css";
-
-dayjs.extend(relativeTime);
 
 const ArticlesPage = ({ articles, isLoggedIn, selectArticle, removeArticle, removeArticleStatusReset }) => {
   let ArticleList = undefined;
@@ -24,9 +17,9 @@ const ArticlesPage = ({ articles, isLoggedIn, selectArticle, removeArticle, remo
     ));
   }
 
-  const SpinIndicator = (
-    <Icon type='loading' className={styles.spinIndicator}/>
-  );
+  // const SpinIndicator = (
+  //   <Icon type='loading' className={styles.spinIndicator}/>
+  // );
 
   return (
     <div className={styles.pageContainer}>

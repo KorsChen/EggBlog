@@ -2,13 +2,9 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import { Link, Redirect } from "react-router-dom";
 import { Col, Icon, Popconfirm, Row, Tag, Tooltip, message } from "antd";
-import dayjs from "dayjs";
-import relativeTime from 'dayjs/plugin/relativeTime';
 import https from '../../utils/https';
 import styles from "./ArticleList.module.css";
 import { checkImageUrlIsValid } from "../../utils/index";
-
-dayjs.extend(relativeTime);
 
 class ArticleItem extends Component{
   constructor(props) {
@@ -69,7 +65,7 @@ class ArticleItem extends Component{
     };
 
     const DisplayUpdatedTime = (
-      <span>Updated on {dayjs(articleTime).format('MMM. D, YYYY')}</span>
+      <span>Updated on {articleTime}</span>
     );
 
     return (

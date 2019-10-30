@@ -1,4 +1,3 @@
-import shortid from 'shortid';
 // import { db, createDoc, removeDoc, updateDoc, getDocsByType, loadArticles } from "../api/pouchdb";
 
 const FETCH_ARTICLES_REQUEST = 'write-down/articles/FETCH_ARTICLES_REQUEST';
@@ -58,7 +57,6 @@ const fetchArticles = () => async (dispatch) => {
 
 const generateNewArticle = () => (
   {
-    id: shortid.generate(),
     title: 'Title',
     excerpt: 'Here is the excerpt.',
     tags: [],

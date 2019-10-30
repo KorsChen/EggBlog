@@ -13,7 +13,7 @@ import sup from 'markdown-it-sup';
 import taskList from 'markdown-it-task-lists';
 import TOC from 'markdown-it-table-of-contents';
 
-import twemoji from 'twemoji';
+// import twemoji from 'twemoji';
 
 const markdownOption = {
   html:         false,        // Enable HTML tags in source
@@ -43,7 +43,7 @@ const TOC_Option = {
 md.use(abbr)
   .use(anchor, anchorOption)
   .use(deflist)
-  .use(emoji)
+  // .use(emoji)
   // .use(footnote)
   // .use(prism)
   .use(imsize, imsizeOption)
@@ -54,8 +54,8 @@ md.use(abbr)
   .use(TOC, TOC_Option);
 
 // change the output of emoji
-md.renderer.rules.emoji = function(token, idx) {
-  return twemoji.parse(token[idx].content);
-};
+// md.renderer.rules.emoji = function(token, idx) {
+//   return twemoji.parse(token[idx].content);
+// };
 
 export default md;

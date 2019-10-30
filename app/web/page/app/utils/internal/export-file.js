@@ -1,4 +1,3 @@
-import FileSaver from "file-saver";
 
 /**
  * exportFile() 使用 FileSaver.js 实现文件下载功能
@@ -11,7 +10,6 @@ import FileSaver from "file-saver";
  */
 function exportFile(data, type, fileName) {
   const blob = new Blob([data], {type: type});
-  FileSaver.saveAs(blob, fileName);
 }
 
 export default exportFile;

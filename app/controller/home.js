@@ -48,7 +48,7 @@ module.exports = app => {
         const year = articleTime.getFullYear();
         const month = articleTime.getMonth() + 1 >= 10 ? articleTime.getMonth() + 1 : '0' + (articleTime.getMonth() + 1);
         const date = articleTime.getDate() >= 10 ? articleTime.getDate() : '0' + articleTime.getDate();
-        articleTime = year + '-' + month + '-' + date;
+        article.articleTime = year + '-' + month + '-' + date;
       }
       await ctx.renderClient('app.js', { article, isLoggedIn: session.user ? true : false });
     }

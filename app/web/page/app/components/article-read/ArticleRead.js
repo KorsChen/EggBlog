@@ -1,8 +1,6 @@
 import React from "react";
 
 import { Row, Col, Tooltip, BackTop } from 'antd';
-import dayjs from "dayjs";
-
 import { GeneralHeader as Header } from "../header/TheHeader";
 
 // ScrollToTop is used to reset the scroll bar to top, due to react-router doesn't handle it.
@@ -105,7 +103,7 @@ const IsPhotoFromUnsplash = ({ coverInfo }) => {
 
 const ArticleInfo = ({ articleAuthor, articleTime, updatedAt }) => {
   const DisplayUpdatedTime = (
-    <span>Updated on {dayjs(updatedAt).format('MMM. D, YYYY')}</span>
+    <span>Updated on {updatedAt}</span>
   );
 
   return (
@@ -115,18 +113,18 @@ const ArticleInfo = ({ articleAuthor, articleTime, updatedAt }) => {
       </Col>
       <Col>
         {
-          dayjs(updatedAt).format('M. D, YYYY') === dayjs(articleTime).format('M. D, YYYY')
-            ? (
+          // dayjs(updatedAt).format('M. D, YYYY') === dayjs(articleTime).format('M. D, YYYY')
+          //   ? (
               <span>
-                {dayjs(articleTime).format('MMM. D, YYYY')}
+                {articleTime}
               </span>
-            ) : (
-              <Tooltip title={DisplayUpdatedTime}>
-                <div className={styles.postedTimeWithUpdated}>
-                  {dayjs(articleTime).format('MMM. D, YYYY')}
-                </div>
-              </Tooltip>
-            )
+            // ) : (
+            //   <Tooltip title={DisplayUpdatedTime}>
+            //     <div className={styles.postedTimeWithUpdated}>
+            //       {dayjs(articleTime).format('MMM. D, YYYY')}
+            //     </div>
+            //   </Tooltip>
+            // )
         }
       </Col>
     </Row>
