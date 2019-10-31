@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 
@@ -7,9 +7,10 @@ import 'normalize.css/normalize.css';
 import './App.css';
 
 import ArticleListPage from './containers/ArticleListContainer';
-import ArticleEditPage from './containers/ArticleEditContainer';
 import ArticleReadPage from './containers/ArticleReadContainer';
 import NoMatchPage from './components/no-match/NoMatch';
+
+const ArticleEditPage =  lazy( () => import('./containers/ArticleEditContainer'));
 
 class App extends React.Component {
   componentDidMount() {
@@ -31,6 +32,7 @@ const AppRouter = () => (
       atActive={{ opacity: 1 }}
       className="switch-wrapper"
     >
+      <Suspense fallback={<div>Loading...</div>}>
       {/*<Route exact path={'/'} component={ArticleEditPage}/>*/}
       <Route exact path={'/'} component={ArticleListPage}/>
       <Route path={'/articles'} component={ArticleListPage}/>
@@ -39,6 +41,7 @@ const AppRouter = () => (
       <Route path={'/article/:articleID/edit/'} component={ArticleEditPage}/>
       {/*<Route path={'/user'} component={UserPage}/>*/}
       <Route component={NoMatchPage}/>
+      </Suspense>
     </AnimatedSwitch>
   </div>
 );
