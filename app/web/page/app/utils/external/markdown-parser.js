@@ -3,7 +3,7 @@ import MarkdownIt from 'markdown-it';
 import abbr from 'markdown-it-abbr';
 import anchor from 'markdown-it-anchor';
 import deflist from 'markdown-it-deflist';
-import emoji from 'markdown-it-emoji';
+// import emoji from 'markdown-it-emoji';
 // import footnote from 'markdown-it-footnote';
 import imsize from 'markdown-it-imsize';
 import mark from 'markdown-it-mark';
