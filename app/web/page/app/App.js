@@ -40,7 +40,7 @@ const AppRouter = () => (
       <Route path={'/article/new/'} component={ArticleEditPage}/>
       <Route path={'/article/:articleID/edit/'} component={ArticleEditPage}/>
       {/*<Route path={'/user'} component={UserPage}/>*/}
-      <Route component={NoMatchPage}/>
+      {/* <Route component={NoMatchPage}/> */}
       </Suspense>
     </AnimatedSwitch>
   </div>
