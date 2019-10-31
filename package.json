@@ -91,6 +91,7 @@
     "redux-devtools-extension": "^2.13.8",
     "service-worker-register": "^1.2.6",
     "terser-webpack-plugin": "^2.2.1",
+    "webpack-ant-icon-loader": "^1.0.8",
     "webpack-bundle-analyzer": "^3.6.0"
   },
   "engines": {

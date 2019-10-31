@@ -1,33 +1,35 @@
 const CompressionPlugin = require('compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   target: 'web',
   devtool: 'false',
+  mode: 'production',
   entry: {
     app: 'app/web/page/app/index.js'
-  },
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    },
-    runtimeChunk: {
-      name: 'runtime'
-    }
   },
   plugins:[
     { serviceworker: true },
     '@babel/plugin-transform-runtime',
     new webpack.optimize.SplitChunksPlugin({
-      chunks: 'all',
+      // chunks: 'all',
       minSize: 20000,
       minChunks: 1,
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
-      name: true
+      name: true,
+      chunks:function(chunk){
+        // 这里的name 可以参考在使用`webpack-ant-icon-loader`时指定的`chunkName`
+        return chunk.name !== 'antd-icons'; 
+      },
+      vendors: {
+        filename: '[name].bundle.js'
+      }
     }),
     new CompressionPlugin({
       filename: '[path].gz[query]', //目标资源名称。[file] 会被替换成原资源。[path] 会被替换成原资源路径，[query] 替换成原查询字符串
@@ -36,6 +38,10 @@ module.exports = {
       threshold: 10240,//只处理比这个值大的资源。按字节计算
       minRatio: 0.8//只有压缩率比这个值小的资源才会被处理
     }),
+    new webpack.ContextReplacementPlugin(
+      /moment[/\\]locale$/,
+      /zh-cn/,
+    ),
     new BundleAnalyzerPlugin({
       //  可以是`server`，`static`或`disabled`。
       //  在`server`模式下，分析器将启动HTTP服务器来显示软件包报告。
@@ -71,7 +77,28 @@ module.exports = {
     rules: [
       {
         test: /\.less$/,
-        loader: 'less-loader' // compiles Less to CSS
+        loader: 'less-loader', // compiles Less to CSS
+        use: {
+          loader:'babel-loader',
+          options: {
+            presets: ['env', 'react', 'stage-0'],
+            plugins: [
+              ['import', [{ libraryName: 'antd', style: true }]]
+            ]
+          }
+        }
+      },
+      {
+        use: {
+          loader:'webpack-ant-icon-loader',
+          enforce: 'pre',
+          // options:{
+          //   chunkName:'antd-icons'
+          // },
+          include:[
+            require.resolve('@ant-design/icons/lib/dist')
+          ]
+        }
       }
     ]
   },
@@ -84,6 +111,18 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin()]
+    minimizer: [new TerserPlugin()],
+    splitChunks: {
+      cacheGroups: {
+        // chunks:'all',
+        chunks:function(chunk){
+          // 这里的name 可以参考在使用`webpack-ant-icon-loader`时指定的`chunkName`
+          return chunk.name !== 'antd-icons'; 
+        },
+        vendors: {
+          filename: '[name].bundle.js'
+        }
+      }
+    }
   }
 };
