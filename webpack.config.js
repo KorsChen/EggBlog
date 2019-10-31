@@ -40,7 +40,10 @@ module.exports = {
     new webpack.ContextReplacementPlugin(
       /moment[/\\]locale$/,
       /zh-cn/,
-    )
+    ),
+    new webpack.DllReferencePlugin({
+      manifest: path.resolve(__dirname, 'build_dll', 'vendor-manifest.json')
+    })
     // ,new BundleAnalyzerPlugin({
     //   //  可以是`server`，`static`或`disabled`。
     //   //  在`server`模式下，分析器将启动HTTP服务器来显示软件包报告。

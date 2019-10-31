@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Col, Icon, Popconfirm, Row, Tag, Tooltip, message } from "antd";
 import https from '../../utils/https';
 import styles from "./ArticleList.module.css";

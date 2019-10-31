@@ -7,10 +7,11 @@ import 'normalize.css/normalize.css';
 import './App.css';
 
 import ArticleListPage from './containers/ArticleListContainer';
-import ArticleReadPage from './containers/ArticleReadContainer';
-import NoMatchPage from './components/no-match/NoMatch';
+// import ArticleReadPage from './containers/ArticleReadContainer';
+// import NoMatchPage from './components/no-match/NoMatch';
 
 const ArticleEditPage =  lazy( () => import('./containers/ArticleEditContainer'));
+const ArticleReadPage =  lazy( () => import('./containers/ArticleReadContainer'));
 
 class App extends React.Component {
   componentDidMount() {

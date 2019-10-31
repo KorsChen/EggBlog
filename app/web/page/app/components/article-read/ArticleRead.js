@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Row, Col, Tooltip, BackTop } from 'antd';
+import { Row, Col, BackTop } from 'antd';
 import { GeneralHeader as Header } from "../header/TheHeader";
 
 // ScrollToTop is used to reset the scroll bar to top, due to react-router doesn't handle it.

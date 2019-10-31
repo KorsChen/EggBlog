@@ -2,8 +2,6 @@ import React, { Component } from "react";
 
 import { Row, Col, Button, Form, Input, Select, Collapse, Tabs, message } from "antd";
 
-import PhotoSearch from "../photo-search/PhotoSearch";
-
 import { checkImageUrlIsValid } from "../../utils";
 
 import styles from "./ArticleInfoSetting.module.css";
@@ -322,9 +320,6 @@ const CoverSettingTips = () => (
 
 const CoverSetting = ({ selectCover }) => (
   <Tabs defaultActiveKey="1">
-    <Tabs.TabPane tab="Choose a photo from Unsplash" key="1">
-      <PhotoSearch selectCover={selectCover}/>
-    </Tabs.TabPane>
     <Tabs.TabPane tab="Upload your photo" key="2">
       <div style={{marginTop: 12}}>
         <pre className={styles.coverSettingTip}>
