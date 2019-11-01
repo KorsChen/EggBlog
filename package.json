@@ -44,7 +44,6 @@
     "markdown-it-table-of-contents": "^0.4.4",
     "markdown-it-task-lists": "^2.1.1",
     "marked": "^0.7.0",
-    "mockjs": "^1.0.1-beta3",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.0.0",

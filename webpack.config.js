@@ -11,10 +11,44 @@ module.exports = {
   entry: {
     app: 'app/web/page/app/index.js'
   },
-  dll:['react','react-dom','react-router-dom', 'antd', 'markdown-it'],
+  dll:[
+    'react',
+    'react-codemirror2',
+    'react-dom',
+    'react-loadable',
+    'react-redux',
+    'react-router',
+    'react-router-config',
+    'react-router-dom',
+    'react-router-redux',
+    'react-router-transition',
+    'react-scroll-sync',
+    'react-stack-grid',
+    'redux',
+    'redux-logger',
+    'redux-thunk',
+    'markdown-it',
+    'markdown-it-abbr',
+    'markdown-it-anchor',
+    'markdown-it-deflist',
+    'markdown-it-footnote',
+    'markdown-it-imsize',
+    'markdown-it-mark',
+    'markdown-it-sub',
+    'markdown-it-sup',
+    'markdown-it-table-of-contents',
+    'markdown-it-task-lists',
+    'lodash',
+    'axios'
+  ],
   plugins:[
     { serviceworker: true },
     '@babel/plugin-transform-runtime',
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
     new webpack.optimize.SplitChunksPlugin({
       // chunks: 'all',
       minSize: 20000,
