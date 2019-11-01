@@ -11,7 +11,7 @@ module.exports = {
   entry: {
     app: 'app/web/page/app/index.js'
   },
-  dll:['react','react-dom','react-router-dom'],
+  dll:['react','react-dom','react-router-dom', 'antd', 'markdown-it'],
   plugins:[
     { serviceworker: true },
     '@babel/plugin-transform-runtime',
@@ -39,7 +39,7 @@ module.exports = {
     }),
     new webpack.ContextReplacementPlugin(
       /moment[/\\]locale$/,
-      /zh-cn/,
+      /zh-cn/
     )
   ],
   module: {

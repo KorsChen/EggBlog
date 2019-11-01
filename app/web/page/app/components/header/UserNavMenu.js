@@ -7,7 +7,7 @@ import styles from "./Header.module.css";
 
 const UserNavMenu = (props) => {
   console.log('UserNavMenu--------------' + JSON.stringify(isLoggedIn));
-  const { history, error, createArticle, userLogout, isLoggedIn, ...rest } = props;
+  const { error, createArticle, userLogout, isLoggedIn, ...rest } = props;
 
   const handleLogout = () => {
     https
