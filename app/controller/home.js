@@ -1,4 +1,3 @@
-const Model = require('../mocks/article/list');
 const crypto = require('crypto');
 
 module.exports = app => {
@@ -110,11 +109,12 @@ module.exports = app => {
         const articles = await app.mysql.query(queryAction);
         const article = articles[0];
         if (article) {
-          let { articleTime } = article;
-          const year = articleTime.getFullYear();
-          const month = articleTime.getMonth() + 1 > 10 ? articleTime.getMonth() : '0' + (articleTime.getMonth() + 1);
-          const date = articleTime.getDate() > 10 ? articleTime.getDate() : '0' + articleTime.getDate();
-          articleTime = year + '-' + month + '-' + date;
+          const { articleTime, articleTags } = article;
+          article.articleTags = (articleTags && articleTags !== null) ? articleTags.split(',') : [];
+          // const year = articleTime.getFullYear();
+          // const month = articleTime.getMonth() + 1 > 10 ? articleTime.getMonth() : '0' + (articleTime.getMonth() + 1);
+          // const date = articleTime.getDate() > 10 ? articleTime.getDate() : '0' + articleTime.getDate();
+          // article.articleTime = year + '-' + month + '-' + date;
         }
         await ctx.renderClient('app.js', { article, isLoggedIn: true });
       }

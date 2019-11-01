@@ -117,7 +117,7 @@ class ArticleInfoForm extends Component {
     const { title, excerpt, tags, author, coverUrl } = data;
 
     let strTags = '';
-    if (tags.length > 0) {
+    if (tags && tags.length > 0) {
       tags.forEach((value) => {
         strTags = strTags ? strTags + ',' + value : strTags + value;
       });

@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { updateContentEditStatus } from '../ducks/currentEdit';
 
 import ArticleEdit from '../components/article-edit/ArticleEdit';
-import { stat } from 'fs';
-import { articles } from '../ducks/articles';
 
 const mapState = (state, ownProps) => {
 
