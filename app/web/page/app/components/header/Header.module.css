@@ -8,7 +8,7 @@
 
 .header {
   background-color: #ADD8E6;
-  height: 65px;
+  height: 75px;
   font-size: calc(10px + 2vmin);
   box-shadow: 0 2px 3px 0 rgba(0,0,0,.05);
   transition: all ease-in 300ms;
