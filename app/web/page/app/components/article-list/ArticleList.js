@@ -1,8 +1,8 @@
-import React from "react";
-import { Col, Row, Divider, BackTop } from "antd";
+import React from 'react';
+import { Col, Row, Divider, BackTop } from 'antd';
 import { GeneralHeader as Header } from '../header/TheHeader';
 import ArticleItem from './ArticleListItem';
-import styles from "./ArticleList.module.css";
+import styles from './ArticleList.module.css';
 
 const ArticlesPage = ({ articles, isLoggedIn, selectArticle, removeArticle, removeArticleStatusReset }) => {
   let ArticleList = undefined;

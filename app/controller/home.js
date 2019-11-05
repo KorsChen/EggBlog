@@ -36,6 +36,7 @@ module.exports = app => {
       const { request, session } = ctx;
       const { url = '' } = request;
 
+      // 查找文章
       const endIndex = url.indexOf('/read');
       const articleID = url.substring(9, endIndex);
       const escapeID = app.mysql.escape(articleID);
@@ -49,6 +50,11 @@ module.exports = app => {
         const date = articleTime.getDate() >= 10 ? articleTime.getDate() : '0' + articleTime.getDate();
         article.articleTime = year + '-' + month + '-' + date;
       }
+
+      // 更新浏览次数
+      const update = 'UPDATE article SET articleClick=articleClick+1 WHERE articleID=' + app.mysql.escape(articleID)
+      await app.mysql.query(update);
+
       await ctx.renderClient('app.js', { article, isLoggedIn: session.user ? true : false });
     }
 

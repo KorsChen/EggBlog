@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 import { Row, Col, BackTop } from 'antd';
-import { GeneralHeader as Header } from "../header/TheHeader";
+import { GeneralHeader as Header } from '../header/TheHeader';
 
 // ScrollToTop is used to reset the scroll bar to top, due to react-router doesn't handle it.
 import { MarkdownParser, ScrollToTop } from '../../utils';
@@ -115,16 +115,16 @@ const ArticleInfo = ({ articleAuthor, articleTime, updatedAt }) => {
         {
           // dayjs(updatedAt).format('M. D, YYYY') === dayjs(articleTime).format('M. D, YYYY')
           //   ? (
-              <span>
-                {articleTime}
-              </span>
-            // ) : (
-            //   <Tooltip title={DisplayUpdatedTime}>
-            //     <div className={styles.postedTimeWithUpdated}>
-            //       {dayjs(articleTime).format('MMM. D, YYYY')}
-            //     </div>
-            //   </Tooltip>
-            // )
+          <span>
+            {articleTime}
+          </span>
+          // ) : (
+          //   <Tooltip title={DisplayUpdatedTime}>
+          //     <div className={styles.postedTimeWithUpdated}>
+          //       {dayjs(articleTime).format('MMM. D, YYYY')}
+          //     </div>
+          //   </Tooltip>
+          // )
         }
       </Col>
     </Row>

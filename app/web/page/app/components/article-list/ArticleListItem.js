@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
-import { Col, Icon, Popconfirm, Row, Tag, Tooltip, message } from "antd";
+import { Col, Icon, Popconfirm, Row, Tag, Tooltip, message } from 'antd';
 import https from '../../utils/https';
 import styles from "./ArticleList.module.css";
 import { checkImageUrlIsValid } from "../../utils/index";
@@ -53,7 +53,7 @@ class ArticleItem extends Component{
   };
 
   render() {
-    const { articleID, articleTitle, articleAuthor, articleTags, articleExcerpt='', articleTime, postedAt } = this.props.metaData;
+    const { articleID, articleTitle, articleAuthor, articleTags, articleExcerpt='', articleTime, postedAt, articleClick } = this.props.metaData;
     const tags = (articleTags && articleTags !== null) ? articleTags.split(',') : [];
     const { isLoggedIn } = this.props;
 
@@ -108,30 +108,37 @@ class ArticleItem extends Component{
               }
             </Col>
           </Row>
-          <p className={styles.excerpt}>
-            {
-              articleExcerpt !== null && articleExcerpt.length > 300
-                ? (
-                  <span>
-                    {articleExcerpt.slice(0, 300) + ' ... '}
-                    <span className={styles.readMoreLink}>
-                      <Link to={toReadPage}>
-                        Read More
-                      </Link>
-                    </span>
-                  </span>
-                ) : (
-                  <span>
-                    {articleExcerpt + ' '} &nbsp;
-                    <span className={styles.readMoreLink}>
-                      <Link to={toReadPage}>
-                        Read More
-                      </Link>
-                    </span>
-                  </span>
-                )
-            }
-          </p>
+          <Row className={styles.infoWrapper} type='flex' justify='space-between'>
+            <Col>
+                <p className={styles.excerpt}>
+                {
+                  articleExcerpt !== null && articleExcerpt.length > 300
+                    ? (
+                      <span>
+                        {articleExcerpt.slice(0, 300) + ' ... '}
+                        <span className={styles.readMoreLink}>
+                          <Link to={toReadPage}>
+                            Read More
+                          </Link>
+                        </span>
+                      </span>
+                    ) : (
+                      <span>
+                        {articleExcerpt + ' '} &nbsp;
+                        <span className={styles.readMoreLink}>
+                          <Link to={toReadPage}>
+                            Read More
+                          </Link>
+                        </span>
+                      </span>
+                    )
+                }
+              </p>
+            </Col>
+            <Col>
+              浏览 · <span>{articleClick}</span>
+            </Col>
+          </Row>
           <Row className={styles.bottomBar} type='flex' justify='space-between'>
             <Col>
               <div className={styles.tagList}>
