@@ -17,12 +17,13 @@
 
 .readPageContent {
   composes: textSize;
-  width: 700px;
+  width: 850px;
   background-color: #fff;
 }
 
 .title {
   font-family: 'Lora', serif;
+  text-align: center;
 }
 
 .infoWrapper {
@@ -57,6 +58,7 @@
 .coverImage {
   display: block;
   max-width: 100%;
+  text-align: center;
 }
 
 .coverInfo {
