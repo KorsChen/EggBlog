@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Prompt } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import throttle from 'lodash/throttle';
+import throttle from 'lodash.throttle';
 
 import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 import {Row, Col } from 'antd';

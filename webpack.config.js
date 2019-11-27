@@ -5,6 +5,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 module.exports = {
   target: 'web',
@@ -87,21 +88,6 @@ module.exports = {
       },
       canPrint:true
     }),
-    // new webpack.optimize.SplitChunksPlugin({
-    //   // chunks: 'all',
-    //   minSize: 20000,
-    //   minChunks: 1,
-    //   maxAsyncRequests: 5,
-    //   maxInitialRequests: 3,
-    //   name: true,
-    //   chunks:function(chunk){
-    //     // 这里的name 可以参考在使用`webpack-ant-icon-loader`时指定的`chunkName`
-    //     return chunk.name !== 'antd-icons'; 
-    //   },
-    //   vendors: {
-    //     filename: '[name].bundle.js'
-    //   }
-    // }),
     new CompressionPlugin({
       filename: '[path].gz[query]', //目标资源名称。[file] 会被替换成原资源。[path] 会被替换成原资源路径，[query] 替换成原查询字符串
       algorithm: 'gzip',//算法
@@ -112,7 +98,8 @@ module.exports = {
     new webpack.ContextReplacementPlugin(
       /moment[/\\]locale$/,
       /zh-cn/
-    )
+    ),
+    new LodashModuleReplacementPlugin
   ],
   module: {
     rules: [
@@ -133,9 +120,9 @@ module.exports = {
         use: {
           loader:'webpack-ant-icon-loader',
           enforce: 'pre',
-          options:{
-            chunkName:'antd-icons'
-          },
+          // options:{
+          //   chunkName:'antd-icons'
+          // },
           include:[
             require.resolve('@ant-design/icons/lib/dist')
           ]
@@ -151,17 +138,35 @@ module.exports = {
     historyApiFallback: true
   },
   optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin({parallel: true})],
-    splitChunks: {
-      cacheGroups: {
-        // chunks:'all',
-        chunks:function(chunk){
-          // 这里的name 可以参考在使用`webpack-ant-icon-loader`时指定的`chunkName`
-          return chunk.name !== 'antd-icons'; 
+    namedModules: true,
+    namedChunks: true,
+    runtimeChunk: { 
+      name: 'runtime' 
+    },
+    splitChunks:
+    {
+      name: false,
+      chunks: 'all',
+      minSize: 1,
+      minChunks: 1,
+      cacheGroups:
+      {
+        default: false,
+        vendors:
+        {
+          name: 'common',
+          chunks: 'all',
+          minChunks: 2,
+          test: /node_modules/
         },
-        vendors: {
-          filename: '[name].bundle.js'
+        styles:
+        {
+          name: 'common',
+          chunks: 'all',
+          minChunks: 2,
+          test: /\.(css|less|scss|stylus)$/,
+          enforce: true,
+          priority: 50
         }
       }
     }
