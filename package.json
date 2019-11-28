@@ -9,7 +9,7 @@
     "analyzer": "easy build prod -s",
     "update": "easy upgrade --egg",
     "dev": "egg-bin dev",
-    "start": "egg-scripts start",
+    "start": "egg-scripts start --daemon",
     "stop": "egg-scripts stop",
     "lint": "eslint .",
     "fix": "eslint --fix .",
