@@ -25,9 +25,7 @@ module.exports = {
         'react-router-config',
         'react-router-dom',
         'react-router-redux',
-        'react-router-transition',
-        'react-scroll-sync',
-        'react-stack-grid'
+        'react-router-transition'
       ],
       include:[],
       exclue: []
@@ -56,7 +54,7 @@ module.exports = {
         'redux',
         'redux-logger',
         'redux-thunk',
-        'lodash',
+        'react-scroll-sync',
         'axios'
       ],
       include:[],

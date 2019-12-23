@@ -37,7 +37,7 @@ module.exports = app => {
       // username
       user: 'root',
       // password
-      password: '',
+      password: '31449423',
       // database
       database: 'blog',
       charset: 'utf8mb4'
