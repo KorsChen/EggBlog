@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { Controlled as CodeMirror } from "react-codemirror2";
+import { Controlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/gfm/gfm.js';
-import "codemirror/addon/selection/active-line"
+import 'codemirror/addon/selection/active-line'
 
 import 'codemirror/lib/codemirror.css';
 import './theme/cherry.css';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // import 'codemirror/theme/material.css';
 // import 'codemirror/theme/monokai.css';

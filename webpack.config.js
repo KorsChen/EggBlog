@@ -19,9 +19,7 @@ module.exports = {
       name: 'react',
       lib: [
         'react',
-        'react-codemirror2',
         'react-dom',
-        'react-loadable',
         'react-redux',
         'react-router',
         'react-router-config',
