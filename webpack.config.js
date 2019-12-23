@@ -25,7 +25,8 @@ module.exports = {
         'react-router-config',
         'react-router-dom',
         'react-router-redux',
-        'react-router-transition'
+        'react-router-transition',
+        'react-scroll-sync'
       ],
       include:[],
       exclue: []
@@ -37,7 +38,6 @@ module.exports = {
         'markdown-it-abbr',
         'markdown-it-anchor',
         'markdown-it-deflist',
-        'markdown-it-footnote',
         'markdown-it-imsize',
         'markdown-it-mark',
         'markdown-it-sub',
@@ -54,7 +54,6 @@ module.exports = {
         'redux',
         'redux-logger',
         'redux-thunk',
-        'react-scroll-sync',
         'axios'
       ],
       include:[],
