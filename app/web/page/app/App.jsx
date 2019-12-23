@@ -8,8 +8,8 @@ import './App.css';
 
 import ArticleListPage from './containers/ArticleListContainer';
 
-const ArticleEditPage =  lazy( () => import('./containers/ArticleEditContainer'));
-const ArticleReadPage =  lazy( () => import('./containers/ArticleReadContainer'));
+const ArticleEditPage = lazy( () => import('./containers/ArticleEditContainer'));
+const ArticleReadPage = lazy( () => import('./containers/ArticleReadContainer'));
 
 class App extends React.Component {
   componentDidMount() {
