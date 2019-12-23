@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
-import { Col, Icon, Popconfirm, Row, Tag, Tooltip, message } from 'antd';
+import { Col, Icon, Popconfirm, Row, Tag, message } from 'antd';
 import https from '../../utils/https';
 import styles from "./ArticleList.module.css";
 import { checkImageUrlIsValid } from "../../utils/index";
@@ -194,7 +194,7 @@ const TagGroup = ({ tags }) => (
             {isLongTag ? `${tag.slice(0, 20)}...` : tag}
           </Tag>
         );
-        return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
+        return tagElem;
       })
     }
   </div>
