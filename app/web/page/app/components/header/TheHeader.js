@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import { Row, Col } from "antd";
 import ArticleInfoSetting from '../article-edit/ArticleInfoSetting';
-import { EditorSettingButton } from "./EditorSetting";
 import { UserNavButton } from "./UserNavButton";
 import styles from './Header.module.css';
 
@@ -20,23 +19,11 @@ const EditPageHeader = ({
         <LogoButton/>
       </Link>
     </Col>
-    {/* <Col span={2} offset={6}>
-      <ArticleEditSaveContainer
-        id={id}
-        markdown={markdown}
-      />
-    </Col> */}
     <Col span={1}>
       <ArticleInfoSetting 
         id={id}
         markdown={markdown}
         article={article}
-      />
-    </Col>
-    <Col span={1}>
-      <EditorSettingButton
-        toggleDisplayMode={toggleDisplayMode}
-        toggleScrollSync={toggleScrollSync}
       />
     </Col>
     <Col span={1}>

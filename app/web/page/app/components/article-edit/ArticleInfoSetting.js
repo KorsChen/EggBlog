@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, Popover, Modal } from "antd";
+import { Icon, Modal } from "antd";
 
 // import { InfoSettingPreviewContainer } from "../../containers/ArticleInfoSettingContainer";
 // import { InfoSettingFormContainer } from "../../containers/ArticleInfoSettingContainer";
@@ -10,17 +10,9 @@ import styles from "./ArticleInfoSetting.module.css";
 
 const InfoSettingButton = props => {
   return (
-    <Popover
-      content={<InfoSettingPreview/>}
-      title="Article Info Preview"
-      trigger={['hover']}
-      mouseEnterDelay={0.8}
-      placement='bottom'
-    >
-      <button className={styles.button} onClick={props.onClick}>
-        <Icon type="form" theme="outlined" />
-      </button>
-    </Popover>
+    <button className={styles.button} onClick={props.onClick}>
+    <Icon type="form" theme="outlined" />
+  </button>
   );
 };
 
@@ -65,7 +57,6 @@ class ArticleInfoSettingModal extends React.Component {
       <div>
         <InfoSettingButton
           onClick={this.showModal}
-          title="Article Info Setting"
         />
         <Modal
           style={{top: 20}}
